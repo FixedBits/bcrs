@@ -39,6 +39,10 @@ li a {
   text-decoration: none;
 }
 
+a {
+  font-family: "League Spartan";
+}
+
 img {
   float: left;
   padding-right: 10px;
