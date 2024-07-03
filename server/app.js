@@ -1,8 +1,10 @@
 /**
  * Title: app.js
  * Author: Professor Krasso
- * Date: 8/5/2023
- */
+ * Date: 07/03/2024
+* Description: Server for the app
+*/
+
 'use strict'
 
 // Require statements
@@ -23,6 +25,8 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
 app.use(function(req, res, next) {
   next(createServer(404)) // forward to error handler
 })
+
+app.use('/api/users', userRoutes);
 
 // error handler for all other errors
 app.use(function(err, req, res, next) {
