@@ -1,0 +1,38 @@
+.navbar {
+  background-color: #9caba0;
+}
+
+.navdiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 50%;
+}
+
+h3 {
+  color: black;
+  padding: 15px 0 0 5px;
+}
+
+
+li {
+  list-style-type: none;
+  display: inline-block;
+  font-size: 30px;
+
+}
+
+li a {
+  color: #fff;
+  margin-right: 25px;
+  text-decoration: none;
+}
+
+img {
+  width: 100px;
+  float: left;
+}
