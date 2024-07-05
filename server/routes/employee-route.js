@@ -173,4 +173,113 @@ router.get("/:userId", (req, res, next) => {
   }
 });
 
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+/**
+ * DeVonte' Ellis
+ * Create Employee API
+ * 7/3/24
+ */
+
+router.post('/', (req, res, next) => {
+  try {
+
+    const { employee } = req.body //the employee object
+    console.log('employee', employee) //log the employee object to the console
+
+    const validator = ajv.compile(employeeSchema) //compiling the employee schema
+    const valid = validator(employee) // test to see if the employee object is valid with the schema
+
+    if (!valid) {
+      const err = new Error ('Bad Request')
+      err.status = 400
+      err.errors = validator.errors
+      console.log('req.body validation has failed', err)
+      next(err) //forward error to the error handler
+      return // return to exit the function
+    }
+
+    employee.password = bcrypt.hashSync(employee.password, saltRounds) //hashes the password
+    console.log('hashed password', employee.password) //log out the hashed password to the console
+
+    //call the mongo module and pass the operations function
+    mongo(async db => {
+
+      console.log('Employee object inside mongo call', employee)
+      const result = await db.collection('employees').insertOne(employee) //insert new employee into the database
+
+      console.log('result', result) //log result to the console
+
+      res.json({id: result.insertedId }) //returns the new employee id
+    }, next)
+
+  } catch (err) {
+    console.log('err', err) //logs the error to the console
+    next(err) //forwards error to error handler
+  }
+})
+
+/**
+ * DeVonte' Ellis
+ * Update Employee API
+ * 7/3/24
+ */
+
+router.put('/:empId', (req, res, next) => {
+  try {
+    let { empId } = req.params //employee id
+    empId = parseInt(empId, 10) //parses the empId into an integer (#)
+
+    //return a 400 error code if the employee id isn't a number
+    if (isNaN(empId)) {
+      // If employee id isn't a number
+      const err = new Error('Sorry, the input must be a number')
+      err.status = 400
+      console.log('err', err)
+      next(err) //forward the error to the error handler
+      return // return to exit the function
+    }
+
+    const { employee } = req.body // employee object
+
+    const validator = ajv.compile(updateEmployeeSchema) // compile the update employee schema
+    const valid = validator(employee) //test to see if the employee object is valid vs the schema
+
+    if (!valid) {
+      const err = new Error('Bad Request')
+      err.status = 400
+      err.errors = validator.errors
+      console.log('req.body validation has failed', err)
+      next(err) // forward the error to the error handler
+      return // return to exit the function
+    }
+
+    //call to the mongo module and pass in the operations function
+    mongo(async db => {
+
+      //query to update the employee object in the database collection
+      const result = await db.collection('employees').updateOne(
+        { empId },
+        { $set: {
+          firstName: employee.firstName,
+          lastName: employee.lastName,
+          role: employee.role}
+        }
+      ) //update the employee
+
+      console.log('result', result) //log the result to the console
+
+      res.status(204).end() //return a 204 status code
+    }, next)
+
+  } catch (err) {
+    console.log('err', err) //log out the error to the console
+    next(err) //forward the error to the error handler
+  }
+})
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+
 module.exports = router;
