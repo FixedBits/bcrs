@@ -1,5 +1,5 @@
 /**
- * Title: employee-routes.js
+ * Title: employee-route.js
  * Author: Victor Soto
  * Date: 07/03/2024
  * Description: Employee routes, use database SwaggerUI/
@@ -15,6 +15,8 @@ const router = express.Router();
 const createError = require("http-errors");
 // Import the 'mongo' function from the 'mongo' module in the 'utils' directory
 const { mongo } = require("../utils/mongo");
+// This line imports a specific function from the MongoDB library that generates unique identifiers for database entries.
+const { ObjectId } = require("mongodb");
 
 /**
  * @openapi
@@ -150,7 +152,9 @@ router.get("/:userId", (req, res, next) => {
     mongo(async (db) => {
       // Fetch the user with the specified ID from the employees collection in the database
       // The findOne method returns the first document that matches the query
-      const user = await db.collection("employees").findOne({ _id: req.params.userId });
+      const user = await db
+        .collection("employees")
+        .findOne({ _id: req.params.userId });
 
       // Log the fetched user to the console
       console.log("findUserById", user);
@@ -169,4 +173,4 @@ router.get("/:userId", (req, res, next) => {
   }
 });
 
-module.exports = app;
+module.exports = router;

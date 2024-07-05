@@ -9,11 +9,12 @@
 //Will not be using mongoose we will be using mongodb driver
 "use strict";
 
-const { MongoClient } = require("mongodb")
+const { MongoClient } = require("mongodb");
 
-const MONGO_URL = 'mongodb+srv://web450_admin:secret1@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
+const MONGO_URL =
+  "mongodb+srv://web450_admin:secret123@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity";
 
-/* 'mongodb+srv://web450_admin:secret1@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
+/* 'mongodb+srv://web450_admin:secret123@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
 each time a person logs in the default will be standard
 create user everyone is standard
 in the databse there will be a role
@@ -26,18 +27,17 @@ const mongo = async (operations, next) => {
 
     const client = await MongoClient.connect(MONGO_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
 
     const db = client.db("employees");
-    console.log("Connected to the database!")
+    console.log("Connected to the database!");
 
     await operations(db);
     console.log("Operation was successful!");
 
     client.close();
     console.log("Disconnected from the database.");
-
   } catch (err) {
     const error = new Error("Error connecting to the database:", err);
     error.status = 500;
@@ -45,7 +45,6 @@ const mongo = async (operations, next) => {
     console.error("Error connecting to the database:", err);
     next(error);
   }
-}
+};
 
 module.exports = { mongo };
-

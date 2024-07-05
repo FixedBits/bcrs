@@ -11,7 +11,10 @@
 const express = require("express");
 const createServer = require("http-errors");
 const path = require("path");
-const userRoutes = require("./routes/employee-routes");
+const userRoutes = require("./routes/employee-route");
+
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
 
 // Create the Express app
 const app = express();
@@ -22,12 +25,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 
+// Define swagger options.
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      version: "1.0.0",
+      title: "BCRS APIs",
+      description: "API for employees",
+    },
+  },
+  apis: ["./server/routes/*.js"],
+};
+
+// Initialize Swagger.
+const swaggerSpecification = swaggerJsdoc(swaggerOptions);
+
+// Serve Swagger documentation - Swagger UI middleware.
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
+
+app.use("/api/users", userRoutes); // Use the employee route.
+
 // error handler for 404 errors
 app.use(function (req, res, next) {
   next(createServer(404)); // forward to error handler
 });
-
-app.use("/api/users", userRoutes);
 
 // error handler for all other errors
 app.use(function (err, req, res, next) {
@@ -40,6 +62,12 @@ app.use(function (err, req, res, next) {
     message: err.message,
     stack: req.app.get("env") === "development" ? err.stack : undefined,
   });
+});
+
+// Express.js listening on port 3001
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app; // export the Express application
