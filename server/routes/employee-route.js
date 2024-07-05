@@ -24,8 +24,8 @@ const { ObjectId } = require("mongodb");
  *   get:
  *     tags:
  *       - BCRS - User Operations
- *     summary: Fetch all users
- *     description: Fetch all users from the employees collection in the MongoDB database
+ *     summary: findAll users
+ *     description: findAll users from the employees collection in the MongoDB database
  *     responses:
  *       '200':
  *         description: OK
@@ -72,7 +72,7 @@ router.get("/", (req, res, next) => {
   try {
     // Connect to the MongoDB database
     mongo(async (db) => {
-      // Fetch all users from the employees collection in the database
+      // findAll users from the employees collection in the database
       const users = await db.collection("employees").find().toArray();
 
       // Log the fetched users to the console
