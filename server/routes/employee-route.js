@@ -15,8 +15,9 @@ const router = express.Router();
 const createError = require("http-errors");
 // Import the 'mongo' function from the 'mongo' module in the 'utils' directory
 const { mongo } = require("../utils/mongo");
-// This line imports a specific function from the MongoDB library that generates unique identifiers for database entries.
-const { ObjectId } = require("mongodb");
+// Imports a specific function from the MongoDB library
+// generates unique identifiers for database entries.
+const { ObjectId } = require("mongodb")
 
 /**
  * @openapi
@@ -154,7 +155,7 @@ router.get("/:userId", (req, res, next) => {
       // The findOne method returns the first document that matches the query
       const user = await db
         .collection("employees")
-        .findOne({ _id: req.params.userId });
+        .findOne({ _id: new ObjectId(req.params.userId) });
 
       // Log the fetched user to the console
       console.log("findUserById", user);
