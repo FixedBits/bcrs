@@ -13,7 +13,7 @@ const { MongoClient } = require("mongodb")
 
 const MONGO_URL = 'mongodb+srv://web450_admin:secret1@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
 
-/* 'mongodb+srv://nodebucket_user:secret123@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
+/* 'mongodb+srv://web450_admin:secret1@bellevueuniversity.8vzftv7.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity'
 each time a person logs in the default will be standard
 create user everyone is standard
 in the databse there will be a role
@@ -29,7 +29,7 @@ const mongo = async (operations, next) => {
       useUnifiedTopology: true
     });
 
-    const db = client.db("nodebucket");
+    const db = client.db("employees");
     console.log("Connected to the database!")
 
     await operations(db);
@@ -48,3 +48,4 @@ const mongo = async (operations, next) => {
 }
 
 module.exports = { mongo };
+
