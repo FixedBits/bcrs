@@ -1,5 +1,5 @@
 /**
- * Title: employee-route.js
+ * Title: employee-routes.js
  * Author: Victor Soto
  * Date: 07/03/2024
  * Description: Employee routes, use database SwaggerUI/
