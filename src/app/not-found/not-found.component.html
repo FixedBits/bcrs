@@ -1,4 +1,3 @@
-
 <!--
   Title: not-found.component.html
   Arthur: Victor Soto
@@ -6,17 +5,30 @@
   Description: Not found page component
 -->
 
-
 <body>
-  <!-- Container div -->
-<div class="container">
 
-<!-- Title of the page -->
-<h1>We</h1>
+  <!-- Container Div -->
+  <div class="container">
+
+    <!-- This is the title -->
+    <p>404</p>
+
+    <!-- This is message -->
+    <h1>Li seems we have sliihered somewhere unfamiliar...</h1>
+    <br>
+    <!-- This is the 404-error image -->
+    <div class="center-image">
+      <img class="img-fluid" src="./assets/homesnake.png" alt="Page Not Found">
+    </div>
+
+    <!-- This is the h2 & h3 text with message "Page not found" -->
+    <!-- and option to go back to Home -->
+    <div>
+      <h2> Back to
+        <a routerLink="/home"><button type="button" class="home-btn">Home</button></a>
+      </h2>
+    </div>
+  </div>
 
 
-
-
-
-</div>
 </body>
