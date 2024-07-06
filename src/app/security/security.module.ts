@@ -11,11 +11,15 @@ import { CommonModule } from '@angular/common';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     SecurityComponent,
-    SigninComponent
+    SigninComponent,
+    ResetPasswordComponent,
+    RegistrationComponent
   ],
   imports: [
     CommonModule,

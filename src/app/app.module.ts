@@ -14,6 +14,16 @@ import { HomeComponent } from './home/home.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { FaqComponent } from './faq/faq.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EmployeeListComponent } from './admin/employees/employee-list/employee-list.component';
+import { EmployeeCreateComponent } from './admin/employees/employee-create/employee-create.component';
+import { EmployeeDeleteComponent } from './admin/employees/employee-delete/employee-delete.component';
+import { ViewEmployeesComponent } from './employees/view-employees/view-employees.component';
+import { EditEmployeesComponent } from './employees/edit-employees/edit-employees.component';
+import { DeleteEmployeesComponent } from './employees/delete-employees/delete-employees.component';
+import { CreateEmployeesComponent } from './employees/create-employees/create-employees.component';
+import { AdminComponent } from './admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +31,17 @@ import { FooterComponent } from './layouts/footer/footer.component';
     HomeComponent,
     BaseLayoutComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    FaqComponent,
+    ProfileComponent,
+    EmployeeListComponent,
+    EmployeeCreateComponent,
+    EmployeeDeleteComponent,
+    ViewEmployeesComponent,
+    EditEmployeesComponent,
+    DeleteEmployeesComponent,
+    CreateEmployeesComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
