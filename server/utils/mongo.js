@@ -31,8 +31,8 @@ const mongo = async (operations, next) => {
       useUnifiedTopology: true,
     });
 
-    // Select the 'employees' database
-    const db = client.db("employees");
+    // Select the 'web450DB' database
+    const db = client.db("web450DB");
 
     // Log successful database connection
     console.log("Connected to the database!");
