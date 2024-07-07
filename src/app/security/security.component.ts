@@ -4,7 +4,6 @@
  * Date: 8/5/23
  */
 
-// imports statements
 import { Component } from '@angular/core';
 
 @Component({
@@ -32,3 +31,4 @@ import { Component } from '@angular/core';
 export class SecurityComponent {
 
 }
+

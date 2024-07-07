@@ -13,6 +13,9 @@ import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,11 @@ import { RegistrationComponent } from './registration/registration.component';
   ],
   imports: [
     CommonModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule
   ]
 })
 export class SecurityModule { }

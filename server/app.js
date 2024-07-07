@@ -13,11 +13,17 @@ const createServer = require("http-errors");
 const path = require("path");
 const userRoutes = require("./routes/employee-route");
 
+//The signinRoute variable
+const signinRoute = require('./routes/signin-route')
+
+//Swagger variables
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
 
 // Create the Express app
 const app = express();
+
+
 
 // Configure the app
 app.use(express.json());
@@ -45,6 +51,10 @@ const swaggerSpecification = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 
 app.use("/api/users", userRoutes); // Use the employee route.
+
+
+//To use the security/signin route
+app.use('/api/security', signinRoute);
 
 // error handler for 404 errors
 app.use(function (req, res, next) {
