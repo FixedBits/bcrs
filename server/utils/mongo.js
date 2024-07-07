@@ -31,7 +31,7 @@ const mongo = async(operations, next) => {
       useUnifiedTopology: true,
     });
 
-    const db = client.db("employees");
+    const db = client.db("web450DB");
     console.log("Connected to the database!");
 
     // Perform the operations passed to the 'mongo' function
