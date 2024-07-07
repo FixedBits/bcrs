@@ -10,8 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
 
+
 // Importing the not-found component
-import { NotFoundComponent} from './not-found/not-found.component'
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -41,11 +42,12 @@ const routes: Routes = [
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
   },
-    {
-      // Redirects to not-found page
+  {
+    // Redirects to not-found page
     path: '**',
     redirectTo: '/not-found'
-  }
+  },
+
 ];
 
 @NgModule({
