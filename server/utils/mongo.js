@@ -42,10 +42,9 @@ const mongo = async(operations, next) => {
     console.log("Disconnected from the database.");
   } catch (err) {
     console.error("Error connecting to the database:", err);
-    const error = new Error("Error connecting to the database:");
     error.status = 500;
 
-
+    console.error("Error connecting to the database:", err)
     next(error);
   }
 };

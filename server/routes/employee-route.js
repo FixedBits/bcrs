@@ -146,15 +146,18 @@ router.get("/", (req, res, next) => {
 
 // Define a GET route to find a user by ID
 router.get("/:userId", (req, res, next) => {
+
+  let { userId } = req.params;
   // Try-catch block to handle any potential errors
   try {
+
     // Connect to the MongoDB database
     mongo(async (db) => {
       // Fetch the user with the specified ID from the employees collection in the database
       // The findOne method returns the first document that matches the query
       const user = await db
         .collection("employees")
-        .findOne({ _id: req.params.userId });
+        .findOne({ _id: new ObjectId(userId) });
 
       // Log the fetched user to the console
       console.log("findUserById", user);
@@ -281,5 +284,74 @@ router.put('/:empId', (req, res, next) => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------
+/**Author: Evelyn Zepeda
+ * Date: 7/6/24
+ * Title: Delete API
+ * Description: API that disables users.
+ */
+
+/**
+ * deleteUser
+ * @openapi
+ * /api/users/{userId}:
+ *  delete:
+ *    tags:
+ *      - Delete User
+ *    description: User is set to disabled
+ *    summary: Sets existing user to disabled
+ *    parameters:
+ *      - in: path
+ *        name: userId
+ *        schema:
+ *          type: string
+ *          description: The user ID
+ *    responses:
+ *      '200':
+ *        description: User document disabled.
+ *      '400':
+ *        description: Not Found
+ *      '500':
+ *        description: Internal Server Error
+ *
+ */
+
+router.delete('/:userId', async (req, res, next) => {
+
+  try {
+    let { userId } = req.params;
+
+    mongo(async (db) => {
+      // Log the userId to verify it's being received correctly
+      console.log('UserId:', userId);
+
+
+      // Update the user to set isDisabled to true
+      await db.collection('employees').updateOne({ _id: new ObjectId(userId) }, { $set: { isDisabled: true } });
+
+      // Find the user in the database
+      const user = await db.collection('employees').findOne({ _id: new ObjectId(userId)
+      });
+      // Log the user
+      console.log('User:', user);
+
+      if (!user) {
+        console.log('No user found.');
+        return next(createError(404, "No employee found."));
+      }
+
+      // If user is already disabled will send a message
+      if (user.isDisabled === true) {
+        res.send('User is disabled');
+        return; // Return to exit the function
+      }
+
+      res.send(user);
+    }, next);
+  } catch (err) {
+    console.error('err', err);
+    next(err);
+  }
+})
 
 module.exports = router;
+

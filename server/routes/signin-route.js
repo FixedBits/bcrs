@@ -15,6 +15,36 @@ const ajv = new Ajv();
 const bcrypt = require('bcryptjs')
 const saltRounds = 10;
 
+/**
+ * Signin
+ * @openapi
+ * /api/security/signin:
+ *   post:
+ *     tags:
+ *       - Signin
+ *     description: Signs in  the user.
+ *     summary: User Signin
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: User logged in Successfully
+ *       '400':
+ *         description: Bad Request
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 
 //The signinSchema which requires and email and a password to sign in to the application
 const signinSchema = {
@@ -77,7 +107,7 @@ router.post('/signin', async (req, res, next) => {
       console.log('Entered password:', signin.password)
       console.log('Password is valid:', passwordIsValid)
       // If the password is not valid return a 401 error to the client
-     
+
 
       res.send(employee) //return the employee object to the client
 
