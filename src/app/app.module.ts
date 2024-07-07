@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,11 +24,16 @@ import { FooterComponent } from './layouts/footer/footer.component';
     HomeComponent,
     BaseLayoutComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

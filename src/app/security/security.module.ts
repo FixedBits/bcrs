@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,11 @@ import { SigninComponent } from './signin/signin.component';
   ],
   imports: [
     CommonModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule
   ]
 })
 export class SecurityModule { }
