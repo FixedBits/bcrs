@@ -25,29 +25,32 @@ const mongo = async(operations, next) => {
     console.log("Connecting to the database...");
 
 
+    // Connect to the MongoDB server with the provided URL and options
     const client = await MongoClient.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
 
-    const db = client.db("web450DB");
-    console.log("Connected to the database!")
+    const db = client.db("employees");
+    console.log("Connected to the database!");
 
-
+    // Perform the operations passed to the 'mongo' function
     await operations(db);
-    console.log(operations)
     console.log("Operation was successful!");
 
+    // Close the database connection
     client.close();
+
+    // Log successful disconnection from the database
     console.log("Disconnected from the database.");
   } catch (err) {
-    console.error("Error connecting to the database:", err);
-    const error = new Error("Error connecting to the database:");
+    const error = new Error("Error connecting to the database:", err);
     error.status = 500;
 
-
+    console.error("Error connecting to the database:", err);
     next(error);
   }
 };
 
+// Export the 'mongo' function
 module.exports = { mongo };

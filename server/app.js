@@ -52,10 +52,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 
 app.use("/api/users", userRoutes); // Use the employee route.
 
-
-//To use the security/signin route
-app.use('/api/security', signinRoute);
-
 // error handler for 404 errors
 app.use(function (req, res, next) {
   next(createServer(404)); // forward to error handler
