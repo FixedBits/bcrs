@@ -18,7 +18,13 @@ const { mongo } = require("../utils/mongo");
 // Imports a specific function from the MongoDB library
 // generates unique identifiers for database entries.
 const { ObjectId } = require("mongodb")
+const Ajv = require('ajv')
+const ajv = new Ajv();
+const app = express();
+const bodyParser = require('body-parser')
 
+
+app.use(bodyParser.json())
 /**
  * @openapi
  * /api/users:
@@ -182,11 +188,11 @@ router.get("/:userId", (req, res, next) => {
 
 /**
  * DeVonte' Ellis
- * Create Employee API
+ * Create User API
  * 7/3/24
  */
 
-router.post('/', (req, res, next) => {
+router.post('/users', (req, res, next) => {
   try {
 
     const { employee } = req.body //the employee object
@@ -230,31 +236,132 @@ router.post('/', (req, res, next) => {
  * 7/3/24
  */
 
-router.put('/:empId', (req, res, next) => {
+/**
+ * updateUser
+ * @openapi
+ * /api/users/{email}:
+ *   put:
+ *     tags:
+ *       - Update User
+ *     name: updateUser
+ *     description: API for updating a user
+ *     summary: Updates the User document
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: string
+ *             properties:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   phoneNumber:
+ *                     type: string
+ *                   role:
+ *                     type: string
+ *                   isDisabled:
+ *                      type: boolean
+ *             required:
+ *               - email
+ *               - firstName
+ *               - lastName
+ *               - address
+ *               - phoneNumber
+ *               - role
+ *               - isDisabled
+ *     responses:
+ *       '200':
+ *         description:  User updated
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
+
+// updateUserSchema
+const updateEmployeeSchema = {
+  type: "object",
+  properties: {
+    "email": {
+      type: 'string'
+    },
+    firstName: {
+      type: "string",
+    },
+    lastName: {
+      type: "string",
+    },
+    address: {
+      type: "string",
+    },
+    phoneNumber: {
+      type: "string",
+    },
+    role: {
+      type: "string",
+    },
+    isDisabled: {
+      type: "boolean",
+    },
+  },
+  required: [
+    "email",
+    "firstName",
+    "lastName",
+    "phoneNumber",
+    "address",
+    "role",
+    "isDisabled",
+  ],
+  additionalProperties: false,
+};
+
+router.put('/:email', (req, res, next) => {
   try {
-    let { empId } = req.params //employee id
-    empId = parseInt(empId, 10) //parses the empId into an integer (#)
 
-    //return a 400 error code if the employee id isn't a number
-    if (isNaN(empId)) {
-      // If employee id isn't a number
-      const err = new Error('Sorry, the input must be a number')
-      err.status = 400
-      console.log('err', err)
-      next(err) //forward the error to the error handler
-      return // return to exit the function
-    }
+    //This variable is  mapped to the router's "empId" parameter. The requested parameter after params should match the name in the route above
+    let { email } = req.params;
 
-    const { employee } = req.body // employee object
+
+    console.log(email)
+    console.log("The request body", req.body)
+    //The body is a property that contains data sent by the client in a POST or PUT request. This data is typically parsed JSON or form data
+    //let { email } = req.body;
+
+    console.log("Employees before validation:", req.body)
+
+
+    console.log(email)
 
     const validator = ajv.compile(updateEmployeeSchema) // compile the update employee schema
-    const valid = validator(employee) //test to see if the employee object is valid vs the schema
+    const valid = validator(req.body) //test to see if the employee object is valid vs the schema
+
+    console.log("EmpId", email)
+    console.log("Employee:", req.body)
+    console.log("Is valid true or false:", valid)
 
     if (!valid) {
       const err = new Error('Bad Request')
       err.status = 400
       err.errors = validator.errors
-      console.log('req.body validation has failed', err)
+      console.log('updateEmployeeSchema validation has failed', err)
       next(err) // forward the error to the error handler
       return // return to exit the function
     }
@@ -262,19 +369,35 @@ router.put('/:empId', (req, res, next) => {
     //call to the mongo module and pass in the operations function
     mongo(async db => {
 
+      console.log('Query Criteria: ', {email})
       //query to update the employee object in the database collection
-      const result = await db.collection('employees').updateOne(
-        { empId },
+      let result = await db.collection('employees').updateOne(
+        //Use email as the query to search
+        { email: email },
+
+        //Make sure to include all the of the REQUIRED properties defined in the updateUserSchema
         { $set: {
-          firstName: employee.firstName,
-          lastName: employee.lastName,
-          role: employee.role}
+          email: req.body.email,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          address: req.body.address,
+          phoneNumber: req.body.phoneNumber,
+          role: req.body.role,
+          isDisabled: req.body.isDisabled}
         }
       ) //update the employee
 
-      console.log('result', result) //log the result to the console
+      console.log('Result:', result);
 
-      res.status(204).end() //return a 204 status code
+      //Matched count means that the query parameter worked and found a matching property
+      //If this is at zero it means that nothing was found and there was no match
+      if (result.matchedCount === 0) {
+        res.status(404).send('Employee not found');
+      } else {
+        //If a match was found send a 204 status and send the result
+        res.send("User has been updated")
+      }
+
     }, next)
 
   } catch (err) {

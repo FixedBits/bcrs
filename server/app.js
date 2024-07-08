@@ -12,6 +12,7 @@ const express = require("express");
 const createServer = require("http-errors");
 const path = require("path");
 const userRoutes = require("./routes/employee-route");
+const bodyParser = require('body-parser')
 
 //The signinRoute variable
 const signinRoute = require('./routes/signin-route')
@@ -27,6 +28,7 @@ const app = express();
 
 // Configure the app
 app.use(express.json());
+app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
