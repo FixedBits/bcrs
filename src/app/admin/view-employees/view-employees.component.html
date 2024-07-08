@@ -1,0 +1,33 @@
+<!--
+  Title: view-employees.component.html
+  Arthur: Victor Soto
+  Date: 07/07/2024
+  Description: view all employees
+-->
+
+<head>
+
+  <div class="container">
+    <h1>Users Configuration</h1>
+    <a routerLink="/create-employees"><button class="btn">Add User</button></a>
+    <div>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+        <tr *ngFor="let user of employees">
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phoneNumber}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</head>

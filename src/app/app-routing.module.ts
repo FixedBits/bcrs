@@ -1,7 +1,8 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
- * Date: 8/5/23
+ * Updated by Victor
+ * Date: 07/07/2024
  */
 
 // imports statements
@@ -9,10 +10,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
-
-
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
+
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -34,7 +37,15 @@ const routes: Routes = [
         path: 'not-found',
         component: NotFoundComponent,
         title: 'BCRS: Not Found'
-      }
+      },
+        {
+    path: 'admin/view-employees',
+          component: ViewEmployeesComponent
+        },
+      {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)
+  },
     ]
   },
   {

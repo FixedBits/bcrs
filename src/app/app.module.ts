@@ -17,7 +17,11 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { EditEmployeesComponent } from './admin/edit-employees/edit-employees.component';
+import { DeleteEmployeesComponent } from './admin/delete-employees/delete-employees.component';
+import { CreateEmployeesComponent } from './admin/create-employees/create-employees.component';
+import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
+import { EmployeesService } from './employees.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent,
     BaseLayoutComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    EditEmployeesComponent,
+    DeleteEmployeesComponent,
+    CreateEmployeesComponent,
+    ViewEmployeesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [EmployeesService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
