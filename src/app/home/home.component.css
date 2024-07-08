@@ -1,0 +1,73 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+   /* Optional: Adds space between the items */
+}
+
+.grid-item {
+  background-color: #6dc8c3;
+  padding: 20px;
+  text-align: center;
+}
+
+
+img {
+  width: 80%;
+  border-radius: 30px;
+  box-shadow: 14px 14px 7px #6d7575;
+  margin: 15px;
+
+}
+
+.slogan {
+  background-color: #d4dfcb;
+  width: 100%;
+}
+
+.slogan-container {
+  background-color: #d4dfcb;
+  border-radius: 30px;
+}
+
+h1 {
+  padding: 50px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+p {
+  line-height: 62px;
+  padding: 5%;
+  font-size: 30px;
+}
+
+.p-container{
+  background-color: #fff;
+  width: 70%;
+  text-align: center;
+}
+
+
+button {
+  border: none;
+  background-color: #509791;
+  width: 300px;
+  padding: 30px;
+  margin: 50px;
+  color: white;
+  font-size: 30px;
+  border-radius: 60px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Two equal columns */
+  gap: 5px; /* Optional: Adds space between the items */
+}
+
+.service-item {
+  background-color: #f0f5f7;
+  text-align: center;
+}
+

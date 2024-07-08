@@ -84,7 +84,7 @@ export class SigninComponent {
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; //if there is no return url redirect the user to the homepage
         this.isLoading = false;
 
-        this.router.navigate([returnUrl]);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.isLoading = false;
