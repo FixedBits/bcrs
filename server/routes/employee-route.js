@@ -158,11 +158,7 @@ router.get("/:userId", (req, res, next) => {
       // The findOne method returns the first document that matches the query
       const user = await db
         .collection("employees")
-<<<<<<< HEAD
         .findOne({ _id: new ObjectId(req.params.userId) });
-=======
-        .findOne({ _id: new ObjectId(userId) });
->>>>>>> deleteAPI
 
       // Log the fetched user to the console
       console.log("findUserById", user);
