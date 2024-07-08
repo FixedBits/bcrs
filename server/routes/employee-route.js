@@ -17,7 +17,51 @@ const createError = require("http-errors");
 const { mongo } = require("../utils/mongo");
 // Imports a specific function from the MongoDB library
 // generates unique identifiers for database entries.
-const { ObjectId } = require("mongodb")
+const { ObjectId } = require("mongodb");
+const { updateLanguageServiceSourceFile } = require("typescript");
+const Ajv = require('ajv');
+
+const ajv = new Ajv() //creates a new ajv class
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
+
+
+
+//Employee Schema for the create/update function
+
+const employeeSchema = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    email: { type: 'string' },
+    password: { type: 'string' },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
+    address: { type: 'string' },
+    phoneNumber: { type: 'string' },
+    isDisabled: { type: 'boolean' },
+    role: { type: 'string' },
+    selectedSecurityQuestions: { type: 'array'}
+    },
+    required: ['_id', 'email', 'password', 'firstName', 'lastName', 'address', 'isDisabled', 'role'],
+    additionalProperties: false
+}
+
+//update employeeSchema, used to update the list of employees
+const updateEmployeeSchema = {
+  type: 'object',
+  properties: {
+    email: { type: 'string' },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
+    address: { type: 'string' },
+    phoneNumber: { type: 'string' },
+    role: { type: 'string' },
+    },
+    required: [ 'email', 'firstName', 'lastName', 'address', 'role' ],
+    additionalProperties: false
+}
+
 
 /**
  * @openapi
@@ -182,7 +226,7 @@ router.get("/:userId", (req, res, next) => {
  * Create Employee API
  * 7/3/24
  */
-
+//POST route
 router.post('/', (req, res, next) => {
   try {
 
@@ -221,18 +265,25 @@ router.post('/', (req, res, next) => {
   }
 })
 
+
+
+
 /**
  * DeVonte' Ellis
  * Update Employee API
  * 7/3/24
  */
-
-router.put('/:empId', (req, res, next) => {
+//PUT route
+router.put('/:userId', (req, res, next) => {
   try {
     let { empId } = req.params //employee id
+
+
     empId = parseInt(empId, 10) //parses the empId into an integer (#)
 
     //return a 400 error code if the employee id isn't a number
+
+    /*
     if (isNaN(empId)) {
       // If employee id isn't a number
       const err = new Error('Sorry, the input must be a number')
@@ -241,11 +292,13 @@ router.put('/:empId', (req, res, next) => {
       next(err) //forward the error to the error handler
       return // return to exit the function
     }
+    */
 
     const { employee } = req.body // employee object
 
     const validator = ajv.compile(updateEmployeeSchema) // compile the update employee schema
     const valid = validator(employee) //test to see if the employee object is valid vs the schema
+
 
     if (!valid) {
       const err = new Error('Bad Request')
@@ -263,9 +316,12 @@ router.put('/:empId', (req, res, next) => {
       const result = await db.collection('employees').updateOne(
         { empId },
         { $set: {
+          email: employee.email,
           firstName: employee.firstName,
           lastName: employee.lastName,
-          role: employee.role}
+          address: employee.address,
+          role: employee.role,
+        }
         }
       ) //update the employee
 
@@ -282,5 +338,9 @@ router.put('/:empId', (req, res, next) => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------
+
+
+//update user API
+
 
 module.exports = router;
