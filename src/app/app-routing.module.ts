@@ -10,11 +10,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
+
+
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
+import { authGuard } from './guards/auth.guard';
 
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
@@ -31,6 +34,7 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [authGuard],
         title: 'BCRS: Home'
       },
       {
