@@ -41,7 +41,7 @@ const employeeSchema = {
     phoneNumber: { type: 'string' },
     isDisabled: { type: 'boolean' },
     role: { type: 'string' },
-    selectedSecurityQuestions: { type: 'array'}
+    selectedSecurityQuestions: { type: 'array'} //securityquestions below here, modified multiple times
     },
     required: ['_id', 'email', 'password', 'firstName', 'lastName', 'address', 'isDisabled', 'role'],
     additionalProperties: false
