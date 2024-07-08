@@ -22,6 +22,8 @@ const Ajv = require('ajv')
 const ajv = new Ajv();
 const app = express();
 const bodyParser = require('body-parser')
+const bcrypt = require('bcryptjs')
+const saltRounds = 10
 
 
 app.use(bodyParser.json())
@@ -185,43 +187,135 @@ router.get("/:userId", (req, res, next) => {
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
+/**
+ * createUser
+ * @openapi
+ * /api/users:
+ *   post:
+ *     tags:
+ *       - createUser
+ *     name: createUser
+ *     description: API for creating a new User
+ *     summary: Creates a new document in the employees collection
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   phoneNumber:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   selectedSecurityQuestions:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       additionalProperties:
+ *                            type: string
+ *             required:
+ *               - email
+ *               - password
+ *               - firstName
+ *               - lastName
+ *               - address
+ *               - selectedSecurityQuestions
+ *     responses:
+ *       '200':
+ *         description: New User created
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 
 /**
- * DeVonte' Ellis
+ * DeVonte' Ellis/Evelyn Zepeda
  * Create User API
  * 7/3/24
  */
 
-router.post('/users', (req, res, next) => {
+const userSchema = {
+  type: 'object',
+  properties: {
+    email: { type: 'string'},
+    password: { type: 'string' },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
+    phoneNumber: { type: 'string' },
+    address: { type: 'string' },
+    selectedSecurityQuestions: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: { type: 'string' }
+      }
+    },
+    role: { type: 'string' },
+    isDisabled: { type: 'boolean' }
+  },
+  required: [
+    'email',
+    'password',
+    'firstName',
+    'lastName',
+    'phoneNumber',
+    'address',
+    'selectedSecurityQuestions'
+  ],
+  additionalProperties: false
+};
+
+//The createUser API
+router.post('/', (req, res, next) => {
   try {
 
-    const { employee } = req.body //the employee object
-    console.log('employee', employee) //log the employee object to the console
+    //Logging the request body before validation
+    console.log(req.body)
 
-    const validator = ajv.compile(employeeSchema) //compiling the employee schema
-    const valid = validator(employee) // test to see if the employee object is valid with the schema
+    const validator = ajv.compile(userSchema) //compiling the user schema
+    console.log("Validator logged", validator)
 
+
+    const valid = validator(req.body) // test to see if the employee object is valid with the schema
+    console.log("Valid logged", valid) //Logging valid
+
+    //If it is not valid send error messaging
     if (!valid) {
       const err = new Error ('Bad Request')
       err.status = 400
       err.errors = validator.errors
-      console.log('req.body validation has failed', err)
+      console.log('validator failed', err)
       next(err) //forward error to the error handler
       return // return to exit the function
     }
 
-    employee.password = bcrypt.hashSync(employee.password, saltRounds) //hashes the password
-    console.log('hashed password', employee.password) //log out the hashed password to the console
+
+
+    let bcryptPassword = bcrypt.hashSync(req.body.password, saltRounds) //hashes the password
+    console.log("this is bcrypt password", bcryptPassword)
+    console.log('hashed password', bcryptPassword) //log out the hashed password to the console
 
     //call the mongo module and pass the operations function
     mongo(async db => {
 
-      console.log('Employee object inside mongo call', employee)
-      const result = await db.collection('employees').insertOne(employee) //insert new employee into the database
+      console.log('The req.body inside the mongo call', req.body)
+      const result = await db.collection('employees').insertOne(req.body) //insert new employee into the database
 
       console.log('result', result) //log result to the console
 
-      res.json({id: result.insertedId }) //returns the new employee id
+      res.send("New user created.") //returns the new employee id
     }, next)
 
   } catch (err) {
@@ -294,7 +388,6 @@ router.post('/users', (req, res, next) => {
  *         description: Internal Server Error
  */
 
-
 // updateUserSchema
 const updateEmployeeSchema = {
   type: "object",
@@ -332,6 +425,8 @@ const updateEmployeeSchema = {
   ],
   additionalProperties: false,
 };
+
+
 
 router.put('/:email', (req, res, next) => {
   try {
