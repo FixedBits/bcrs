@@ -12,34 +12,36 @@ import { CanActivateFn } from '@angular/router';
 
 //imports for component pages
 import { AdminComponent } from "./admin/admin.component";
-import { CreateEmployeesComponent } from "../employees/create-employees/create-employees.component";
-import { DeleteEmployeesComponent } from "../employees/delete-employees/delete-employees.component";
-import { EditEmployeesComponent } from "../employees/edit-employees/edit-employees.component";
-import { ViewEmployeesComponent } from "../employees/view-employees/view-employees.component";
+import { CreateEmployeesComponent } from "../admin/create-employees/create-employees.component";
+import { DeleteEmployeesComponent } from "../admin/delete-employees/delete-employees.component";
+import { EditEmployeesComponent } from "../admin/edit-employees/edit-employees.component";
+import { ViewEmployeesComponent } from "../admin/view-employees/view-employees.component";
 
 // defining main routes for the admin component
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: AdminComponent,
     children: [
       {
-        path: '',
+        path: 'create-employees',
         component: CreateEmployeesComponent,
         title: 'BCRS: New Employees'
       },
       {
-        path: '',
+        path: 'delete-employees',
         component: DeleteEmployeesComponent,
         title: 'BCRS Delete Employees'
       },
-      {path: '',
-      component: EditEmployeesComponent,
-      title: 'BCRS Edit Employees'
+      {
+        path: 'edit-employees',
+        component: EditEmployeesComponent,
+        title: 'BCRS Edit Employees'
       },
-      {path: '',
-      component: ViewEmployeesComponent,
-      title: 'BCRS View Employee'
+      {
+        path: 'view-employees',
+        component: ViewEmployeesComponent,
+        title: 'BCRS View Employee'
       }
     ],
     canActivate: [roleGuard]

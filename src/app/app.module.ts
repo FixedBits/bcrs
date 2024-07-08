@@ -14,42 +14,36 @@ import { HomeComponent } from './home/home.component';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
-import { FaqComponent } from './faq/faq.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ViewEmployeesComponent } from './employees/view-employees/view-employees.component';
-import { EditEmployeesComponent } from './employees/edit-employees/edit-employees.component';
-import { DeleteEmployeesComponent } from './employees/delete-employees/delete-employees.component';
-import { CreateEmployeesComponent } from './employees/create-employees/create-employees.component';
-import { AdminComponent } from './admin/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NotFoundComponent } from './not-found/not-found.component';
+import { EditEmployeesComponent } from './admin/edit-employees/edit-employees.component';
+import { DeleteEmployeesComponent } from './admin/delete-employees/delete-employees.component';
+import { CreateEmployeesComponent } from './admin/create-employees/create-employees.component';
+import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
+import { EmployeesService } from './employees.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NotFoundComponent,
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
-    FaqComponent,
-    ProfileComponent,
-    ViewEmployeesComponent,
     EditEmployeesComponent,
     DeleteEmployeesComponent,
     CreateEmployeesComponent,
-    AdminComponent
-
+    ViewEmployeesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [EmployeesService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
