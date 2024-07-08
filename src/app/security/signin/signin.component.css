@@ -1,0 +1,33 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+   /* Optional: Adds space between the items */
+}
+
+.grid-item {
+  background-color: #6dc8c3;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 150px;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.info-container {
+  margin-left: 35%;
+}
+
+input {
+  height: 70px;
+}
+
+
+.form-info {
+  width: 50%;
+}
+
+label {
+  font-size: 25px;
+}

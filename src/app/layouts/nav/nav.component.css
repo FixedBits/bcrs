@@ -1,5 +1,6 @@
 .navbar {
-  background-color: #9caba0;
+  background-color: #9cca9c;
+  border-bottom: rgb(0, 0, 0) solid 2px;
 }
 
 .navdiv {
@@ -15,10 +16,10 @@
 
 h2 {
   color: black;
-  padding: 10px 0 0 5px;
-  font-family: "Pacifico", cursive;
-  text-shadow: 2px 2px rgb(100, 100, 100);
-  font-size: 40px;
+  padding: 40px 0 0 5px;
+  font-family:  "Poppins";
+  font-size: 50px;
+  font-weight: 300;
 }
 
 ul {
@@ -41,10 +42,12 @@ li a {
 
 a {
   font-family: "League Spartan";
+  font-size: 50px;
+  font-weight: 500;
 }
 
 img {
   float: left;
   padding-right: 10px;
-  width: 120px;
+  width: 150px;
 }
