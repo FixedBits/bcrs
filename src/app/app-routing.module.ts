@@ -1,3 +1,4 @@
+
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
@@ -10,14 +11,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
-
-
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
-
-import { AdminRoutingModule } from './admin/admin-routing.module';
-import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
 import { authGuard } from './guards/auth.guard';
+import { AdminComponent } from './admin/admin.component';
+import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
 
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
@@ -42,20 +40,28 @@ const routes: Routes = [
         component: NotFoundComponent,
         title: 'BCRS: Not Found'
       },
-        {
-    path: 'admin/view-employees',
-          component: ViewEmployeesComponent
-        },
       {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)
-  },
+        path: 'admin',
+        component: AdminComponent,
+        title: 'BCRS: Admin',
+        children: [
+          {
+            path: 'view-employees',
+            component: ViewEmployeesComponent,
+            title: 'BCRS: View Employees'
+          }
+        ]
+      }
     ]
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: 'admin',
+    loadChildren:() => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     // Redirects to not-found page
