@@ -1,18 +1,27 @@
+.page-container {
+  background-color: rgb(134, 211, 185);
+}
+
+
 .grid-container {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(2, 1fr); /* Two equal columns */
    /* Optional: Adds space between the items */
 }
 
 .grid-item {
-  background-color: #6dc8c3;
+  background-color: #6dc89a;
   text-align: center;
 }
+
+
+
 
 h2 {
   margin-top: 150px;
   font-size: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .info-container {
@@ -23,11 +32,31 @@ input {
   height: 70px;
 }
 
-
-.form-info {
-  width: 50%;
+.form-container {
+  width: 500px;
+  margin: 0 auto;
 }
 
 label {
   font-size: 25px;
+}
+
+img {
+  width: 100%;
+}
+
+.img-container :first-of-type {
+  margin: 0 auto;
+  margin-top: 300px;
+  width: 90%;
+  margin-left: 4%;
+  box-shadow: 5px 5px 10px #4d5853;
+}
+
+.logo {
+  margin-top: 40px;
+  width: 50%;
+  margin-left: 200px;
+  margin-bottom: 500px;
+  box-shadow: 5px 10px 15px #4d5853;
 }

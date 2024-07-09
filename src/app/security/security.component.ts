@@ -15,8 +15,6 @@ import { Component } from '@angular/core';
 
           <router-outlet></router-outlet>
 
-        <a routerLink="/">Return Home</a>
-
   `,
   styles: [
   ]

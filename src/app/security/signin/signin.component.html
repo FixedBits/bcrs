@@ -2,81 +2,87 @@
  Author: Evelyn Zepeda
  Date: 7/7/24
  Description: The signin page-->
-<div class="grid-container">
-  <div class="grid-item">
-    <img src="../../../assets/signin-computer-guy.jpg">
-  </div>
-  <div class="grid-item">
-    <h2 class="p-3 text-light">Sign In</h2>
-      <!-- Error message -->
-    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-      {{  errorMessage }}
-    </div>
-
-    <div class="form-container">
-    <form [formGroup]="signinForm" (ngSubmit)="signIn(); signinForm.reset();">
-
-      <div class="info-container"><div class="form-info">
-        <label for="email" class="form-label">Email:</label>
-        <input type="text" class="form-control" id="email" formControlName="email">
-      </div></div>
+ <div class="page-container">
+  <div class="grid-container">
+    <div class="img-container"><img class="grid-item" src="../../../assets/signin-computer-guy.jpg"></div>
 
 
-     <!-- validation for email -->
-      <div *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('required')">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Email is required.
-          <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </div>
+    <div class="grid-item">
+
+        <!-- Error message -->
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{  errorMessage }}
       </div>
 
-            <!-- Touched up form validation-->
-      <div *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('email')">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Please enter a valid email address.
-          <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </div>
-      </div>
+      <div class="form-container">
+      <form [formGroup]="signinForm" (ngSubmit)="signIn(); signinForm.reset();">
 
-            <!-- Password input label -->
-      <div class="info-container">
-        <div class="form-info">
-          <label for="password" class="form-label">Password:</label>
-          <input type="password" class="form-control" id="password" formControlName="password">
-        </div>
-      </div>
+        <div class="info-container"><div class="form-info"><h2>Sign In</h2>
+          <label for="email" class="form-label">Email:</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div></div>
 
 
-      <!-- form validation-->
-      <div *ngIf="signinForm.controls['password'].touched && signinForm.controls['password'].hasError('pattern')">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one number
+       <!-- validation for email -->
+        <div *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('required')">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Email is required.
             <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </div>
-      </div>
-
-
-      <br>
-
-
-      <div>
-        <button  type="submit" class="btn">
-          <span *ngIf="!isLoading" >Sign In</span>
-
-          <div *ngIf="isLoading">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
           </div>
-        </button>
-      </div>
+        </div>
 
-      <!-- Register button -->
+              <!-- Touched up form validation-->
+        <div *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('email')">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please enter a valid email address.
+            <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </div>
+        </div>
 
-      <div >
-        <div>Don't have an account? <a class="text-hp" routerLink="/">Register</a></div>
-      </div>
+              <!-- Password input label -->
+        <div class="info-container">
+          <div class="form-info">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+          </div>
+        </div>
 
-      <a routerLink="/" class="text-dark text-underline-hover">Return</a>
-    </form>
-</div>
 
-<router-outlet></router-outlet>
+        <!-- form validation-->
+        <div *ngIf="signinForm.controls['password'].touched && signinForm.controls['password'].hasError('pattern')">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one number
+              <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </div>
+        </div>
+
+
+        <br>
+
+
+        <div class="info-container">
+          <button  type="submit" class="btn">
+            <span *ngIf="!isLoading" >Sign In</span>
+
+            <div *ngIf="isLoading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
+            </div>
+          </button>
+        </div>
+
+        <!-- Register button -->
+
+        <div class="info-container" >
+          <div>Don't have an account? <a class="text-hp" routerLink="/">Register</a></div>
+        </div>
+
+        <a routerLink="/" class="text-dark text-underline-hover info-container">Return</a>
+
+        <div class="logo">
+          <img src="../../../assets/snek.jpg">
+        </div>
+      </form>
+      <br><br><br>
+  </div>
+
+ </div>

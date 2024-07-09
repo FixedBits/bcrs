@@ -48,6 +48,7 @@ a {
 
 img {
   float: left;
-  padding-right: 10px;
+  margin-left: 25px;
+  margin-right: 10px;
   width: 150px;
 }
