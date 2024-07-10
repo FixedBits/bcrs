@@ -572,5 +572,49 @@ router.delete('/:userId', async (req, res, next) => {
   }
 })
 
+
+/**
+ * Author: DeVonte Ellis
+ * Date: 7-9-2024
+ * Title: findSelectedSecurityQuestions API
+ * Description:
+ *
+ * test/route: localhost:3000/api/users/:email/security-questions
+ */
+
+router.get('/:email/security-questions', (req, res, next) => {
+  try {
+    const email = req.params.email //employee email
+
+    console.log('email', email) // log the email to the console
+
+    // call the mongo module and pass in the operations function
+    mongo(async db => {
+
+      // query to find the employee email and return only the securityQuestions property
+      const employee = await db.collection('employees').findOne(
+        { email: email},
+        { projection: { email: 1, empId: 1, selectedSecurityQuestions: 1 } },
+      )
+
+      console.log('Selected security questions', employee) //log out the securityQuestions array to the console
+
+      if (!employee) {
+        //if the employee isn't found
+        const err = new Error('Unable to find employee with email ' + email)
+        err.status = 404
+        console.log('err', err)
+        next(err) //forward the error to the error handler
+        return // return to exit the function
+      }
+
+      res.send(employee) // return the employee object
+    }, next)
+  } catch (err) {
+    console.log('err', err) // log out the error to the console
+    next(err) //forward the error to the error handler
+  }
+})
+
 module.exports = router;
 
