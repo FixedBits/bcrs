@@ -7,6 +7,7 @@
 
 import { Component, OnInit } from '@angular/core'; // Import Angular core dependencies
 import { EmployeesService } from '../../employees.service';  // Import EmployeesService
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Employee {
   firstName: string;
@@ -16,14 +17,15 @@ interface Employee {
   phoneNumber: string;}
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-view-employees',
   templateUrl: './view-employees.component.html',
   styleUrls: ['./view-employees.component.css']
 })
 export class ViewEmployeesComponent implements OnInit {
   employees: Employee[] = []; // Initialize employees as an array of employees
 
-  constructor(private employeesService: EmployeesService) { }  // Inject EmployeesService
+  constructor(
+    private employeesService: EmployeesService) { }  // Inject EmployeesService
 
   ngOnInit() {
    this.employeesService.getUsers().subscribe((data: Employee[]) => {  // Use EmployeesService to get users

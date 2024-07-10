@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
@@ -14,9 +15,6 @@ import { HomeComponent } from './home/home.component';
 
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
-
-import { AdminRoutingModule } from './admin/admin-routing.module';
-import { ViewEmployeesComponent } from './admin/view-employees/view-employees.component';
 import { authGuard } from './guards/auth.guard';
 
 
@@ -42,15 +40,11 @@ const routes: Routes = [
         component: NotFoundComponent,
         title: 'BCRS: Not Found'
       },
-        {
-    path: 'admin/view-employees',
-          component: ViewEmployeesComponent
-        },
-      {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)
-  },
     ]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)

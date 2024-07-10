@@ -8,10 +8,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { roleGuard } from "../guards/role.guard";
-import { CanActivateFn } from '@angular/router';
 
 //imports for component pages
-import { AdminComponent } from "./admin/admin.component";
+import { AdminComponent } from "./admin.component";
 import { CreateEmployeesComponent } from "../admin/create-employees/create-employees.component";
 import { DeleteEmployeesComponent } from "../admin/delete-employees/delete-employees.component";
 import { EditEmployeesComponent } from "../admin/edit-employees/edit-employees.component";
@@ -45,10 +44,12 @@ const routes: Routes = [
       }
     ],
     canActivate: [roleGuard]
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
+
 export class AdminRoutingModule { }
