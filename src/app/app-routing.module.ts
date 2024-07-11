@@ -11,11 +11,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
 import { authGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
 
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
@@ -40,7 +42,13 @@ const routes: Routes = [
         component: NotFoundComponent,
         title: 'BCRS: Not Found'
       },
-    ]
+      {
+        path: 'faq',
+        component: FaqComponent,
+        title: 'BCRS: Faq'
+      }
+    ],
+    canActivate: [roleGuard]
   },
   {
     path: 'admin',
