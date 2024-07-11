@@ -582,7 +582,7 @@ router.delete('/:userId', async (req, res, next) => {
  * test/route: localhost:3000/api/users/:email/security-questions
  */
 
-router.get('/:email/security-questions', (req, res, next) => {
+router.post('/:email/security-questions', (req, res, next) => {
   try {
     const email = req.params.email //employee email
 
