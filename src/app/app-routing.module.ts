@@ -48,7 +48,6 @@ const routes: Routes = [
         title: 'BCRS: Faq'
       }
     ],
-    canActivate: [roleGuard]
   },
   {
     path: 'admin',
