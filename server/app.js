@@ -22,10 +22,6 @@ const registrationRoute = require('./routes/registration')
 const securityRouter = require('./routes/security');
 
 
-//Swagger variables
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
-
 // Create the Express app
 const app = express();
 
