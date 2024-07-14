@@ -31,81 +31,12 @@ const securityQuestionsSchema = {
   },
 };
 
-// This is the schema for resetPassword API
-
-const resetPasswordSchema = {
-  type: "object",
-  properties: {
-    password: { type: "string" },
-  },
-  required: ["password"],
-  additionalProperties: false,
-};
-
-/**
- * @openapi
- * /api/security/verify/employees/{email}/security-questions:
- *   post:
- *     tags:
- *       - Verify Security Questions
- *     summary: Verify a user's security questions
- *     description: This API verifies a user's security questions by comparing the answers provided in the request body with the ones stored in the database.
- *     parameters:
- *       - in: path
- *         name: email
- *         schema:
- *           type: string
- *         required: true
- *         description: The email of the user to verify
- *     requestBody:
- *       description: The security questions and answers to verify
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: array
- *             items:
- *               type: object
- *               properties:
- *                 question:
- *                   type: string
- *                 answer:
- *                   type: string
- *               required: ["question", "answer"]
- *     responses:
- *       '200':
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   question:
- *                     type: string
- *                   answer:
- *                     type: string
- *       '400':
- *         description: Bad Request
- *       '404':
- *         description: Not Found
- *       '500':
- *         description: Internal Server Error
- */
-
 // This API verifies a user's security questions
 router.post("/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
-    let selectedSecurityQuestions = req.body; // This captures the request body
-
-    // This ensures selectedSecurityQuestions is an array
-    if (!Array.isArray(selectedSecurityQuestions)) {
-      selectedSecurityQuestions = [selectedSecurityQuestions];
-    }
-
-    console.log("Logging the request body", req.body);
+    const { selectedSecurityQuestions } = req.body; // This captures the request body
+    console.log('Logging the request body', req.body)
 
     console.log("Employee email", email); // This logs the email to the console
     console.log("Selected Security Questions", selectedSecurityQuestions); // This logs the securityQuestions object to the console
@@ -161,105 +92,6 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
     }, next);
   } catch (err) {
     console.log(`API Error: ${err.message}`); // This logs the error to the console
-    next(err); // This passes the error to the next middleware in the stack
-  }
-});
-
-/**
- * @openapi
- * /api/verify/security/employees/{email}/reset-password:
- *   post:
- *     tags:
- *       - Reset Password
- *     summary: Reset a user's password
- *     description: This API resets a user's password by updating the password in the database.
- *     parameters:
- *       - in: path
- *         name: email
- *         schema:
- *           type: string
- *         required: true
- *         description: The email of the user to reset the password
- *     requestBody:
- *       description: The new password
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               password:
- *                 type: string
- *             required: ["password"]
- *             additionalProperties: false
- *     responses:
- *       '200':
- *         description: Password Changed
- *       '400':
- *         description: Bad Request
- *       '404':
- *         description: Not Found
- *       '500':
- *         description: Internal Server Error
- */
-
-// resetPassword API
-
-router.post("/security/employees/:email/reset-password", (req, res, next) => {
-  try {
-    const email = req.params.email; // This captures the email parameter
-    const user = req.body; // This captures the request body
-
-    console.log("Employee email", email); // This logs the email to the console
-
-    // This validates the password object against the resetPasswordSchema
-    const validate = ajv.compile(resetPasswordSchema);
-    const valid = validate(user);
-
-    // This returns a 400 error to the client if the password object is not valid
-    if (!valid) {
-      const err = new Error("Bad Request"); // This creates a new Error object
-      err.status = 400; // This sets the error status to 400
-      err.errors = validate.errors; // This sets the error object's errors property to the validate.errors object
-
-      console.log("password validation errors", validate.errors); // This logs out the errors to the console
-      next(err); // This passes the error to the next middleware in the stack
-      return; // Return to exit the function
-    }
-
-    // This calls the mongo module and pass in the operations function
-    mongo(async (db) => {
-      const employee = await db
-        .collection("employees")
-        .findOne({ email: email }); // This finds the employee by email
-
-      // This returns the 404 error to the client if the employee is not found
-      if (!employee) {
-        const err = new Error("Not Found"); // This creates a new Error object
-        err.status = 404; // This sets the error status to 404
-
-        console.log("Employee", err); // This logs the error to the console
-        next(err); /// This passes the error to the next middleware in the stack
-        return; // Return to exit the function
-      }
-      console.log("Selected Employee", employee); // This logs the employee object to the console
-
-      const hashedPassword = bcrypt.hashSync(user.password, saltRounds); // This hashes the password
-
-      // This updates the employee document with the new hashed password
-      const result = await db.collection("employees").updateOne(
-        { email: email },
-        {
-          $set: { password: hashedPassword },
-        }
-      );
-
-      console.log("MongoDB update result", result); // This logs out the result to the console
-
-      res.status(200).send("Success! Password reset complete."); // This returns a 200 status code to the client
-    }, next);
-  } catch (err) {
-    console.log(`API Error: ${err.message}`); // This logs out the error to the console
     next(err); // This passes the error to the next middleware in the stack
   }
 });

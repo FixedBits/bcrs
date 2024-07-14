@@ -1,9 +1,7 @@
 /**
  * Title: app.js
  * Author: Professor Krasso
- * Updated by: Victor Soto
  * Date: 07/03/2024
- * Updated by: Victor Soto
  * Description: Server for the app
  */
 
@@ -11,29 +9,33 @@
 
 // Require statements
 const express = require("express");
-const createServer = require("http-errors");
 const path = require("path");
-const userRoutes = require("./routes/employee-route");
+const bodyParser = require('body-parser')
+const createServer = require("http-errors");
 
-//The signinRoute variable
-const signinRoute = require("./routes/signin-route");
+// Route definitions
+const userRoutes = require("./routes/employee-route");
+const signinRoute = require('./routes/signin-route')
+const registrationRoute = require('./routes/registration')
 
 // This imports the security router
-const securityRouter = require("./routes/security");
+const securityRouter = require('./routes/security');
 
-//Swagger variables
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
 
 // Create the Express app
 const app = express();
 
 // Configure the app
 app.use(express.json());
+app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 
+
+//Swagger variables
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
 // Define swagger options.
 const swaggerOptions = {
   swaggerDefinition: {
@@ -50,12 +52,27 @@ const swaggerOptions = {
 // Initialize Swagger.
 const swaggerSpecification = swaggerJsdoc(swaggerOptions);
 
+
+
 // Serve Swagger documentation - Swagger UI middleware.
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 
 app.use("/api/users", userRoutes); // Use the employee route
 app.use("/api/verify", securityRouter); // Use security route
 app.use("/signin", signinRoute); // Use signin route
+
+
+
+
+//Security Routes
+app.use('/api/security', signinRoute)
+app.use('/api/security', registrationRoute)
+
+app.use((req, res, next) => {
+  console.log('Request received:', req.method, req.url, JSON.stringify(req.body, null, 2));
+  next();
+});
+
 
 // error handler for 404 errors
 app.use(function (req, res, next) {
