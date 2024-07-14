@@ -31,6 +31,8 @@ const securityQuestionsSchema = {
   },
 };
 
+// This is the schema for resetPassword API
+
 const resetPasswordSchema = {
   type: "object",
   properties: {
@@ -40,18 +42,77 @@ const resetPasswordSchema = {
   additionalProperties: false,
 };
 
+/**
+ * @openapi
+ * /api/security/verify/employees/{email}/security-questions:
+ *   post:
+ *     tags:
+ *       - Verify Security Questions
+ *     summary: Verify a user's security questions
+ *     description: This API verifies a user's security questions by comparing the answers provided in the request body with the ones stored in the database.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The email of the user to verify
+ *     requestBody:
+ *       description: The security questions and answers to verify
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 question:
+ *                   type: string
+ *                 answer:
+ *                   type: string
+ *               required: ["question", "answer"]
+ *     responses:
+ *       '200':
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   question:
+ *                     type: string
+ *                   answer:
+ *                     type: string
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 // This API verifies a user's security questions
 router.post("/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
-    const { securityQuestions } = req.body; // This captures the request body
+    let selectedSecurityQuestions = req.body; // This captures the request body
+
+    // This ensures selectedSecurityQuestions is an array
+    if (!Array.isArray(selectedSecurityQuestions)) {
+      selectedSecurityQuestions = [selectedSecurityQuestions];
+    }
+
+    console.log("Logging the request body", req.body);
 
     console.log("Employee email", email); // This logs the email to the console
-    console.log("Security Questions", securityQuestions); // This logs the securityQuestions object to the console
+    console.log("Selected Security Questions", selectedSecurityQuestions); // This logs the securityQuestions object to the console
 
     // This validates the securityQuestions object against the securityQuestionsSchema
     const validate = ajv.compile(securityQuestionsSchema);
-    const valid = validate(securityQuestions);
+    const valid = validate(selectedSecurityQuestions);
 
     // This returns a 400 error if the securityQuestions object is invalid
     if (!valid) {
@@ -81,11 +142,11 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
 
       // This returns a 401 error if the security questions do not match
       if (
-        securityQuestions[0].answer !==
+        selectedSecurityQuestions[0].answer !==
           employee.selectedSecurityQuestions[0].answer ||
-        securityQuestions[1].answer !==
+        selectedSecurityQuestions[1].answer !==
           employee.selectedSecurityQuestions[1].answer ||
-        securityQuestions[2].answer !==
+        selectedSecurityQuestions[2].answer !==
           employee.selectedSecurityQuestions[2].answer
       ) {
         const err = new Error("Unauthorized"); // This creates a new Error object
@@ -103,6 +164,44 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
     next(err); // This passes the error to the next middleware in the stack
   }
 });
+
+/**
+ * @openapi
+ * /api/security/verify/employees/{email}/reset-password:
+ *   post:
+ *     tags:
+ *       - Reset Password
+ *     summary: Reset a user's password
+ *     description: This API resets a user's password by updating the password in the database.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The email of the user to reset the password
+ *     requestBody:
+ *       description: The new password
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *             required: ["password"]
+ *             additionalProperties: false
+ *     responses:
+ *       '204':
+ *         description: No Content
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
 
 // resetPassword API
 
