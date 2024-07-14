@@ -35,14 +35,15 @@ const securityQuestionsSchema = {
 router.post("/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
-    const { securityQuestions } = req.body; // This captures the request body
+    const { selectedSecurityQuestions } = req.body; // This captures the request body
+    console.log('Logging the request body', req.body)
 
     console.log("Employee email", email); // This logs the email to the console
-    console.log("Security Questions", securityQuestions); // This logs the securityQuestions object to the console
+    console.log("Selected Security Questions", selectedSecurityQuestions); // This logs the securityQuestions object to the console
 
     // This validates the securityQuestions object against the securityQuestionsSchema
     const validate = ajv.compile(securityQuestionsSchema);
-    const valid = validate(securityQuestions);
+    const valid = validate(selectedSecurityQuestions);
 
     // This returns a 400 error if the securityQuestions object is invalid
     if (!valid) {
@@ -72,11 +73,11 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
 
       // This returns a 401 error if the security questions do not match
       if (
-        securityQuestions[0].answer !==
+        selectedSecurityQuestions[0].answer !==
           employee.selectedSecurityQuestions[0].answer ||
-        securityQuestions[1].answer !==
+        selectedSecurityQuestions[1].answer !==
           employee.selectedSecurityQuestions[1].answer ||
-        securityQuestions[2].answer !==
+        selectedSecurityQuestions[2].answer !==
           employee.selectedSecurityQuestions[2].answer
       ) {
         const err = new Error("Unauthorized"); // This creates a new Error object
