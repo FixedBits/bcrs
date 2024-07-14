@@ -31,12 +31,70 @@ const securityQuestionsSchema = {
   },
 };
 
+/**
+ * @openapi
+ * /api/security/verify/employees/{email}/security-questions:
+ *   post:
+ *     tags:
+ *       - Verify Security Questions
+ *     summary: Verify a user's security questions
+ *     description: This API verifies a user's security questions by comparing the answers provided in the request body with the ones stored in the database.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The email of the user to verify
+ *     requestBody:
+ *       description: The security questions and answers to verify
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 question:
+ *                   type: string
+ *                 answer:
+ *                   type: string
+ *               required: ["question", "answer"]
+ *     responses:
+ *       '200':
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   question:
+ *                     type: string
+ *                   answer:
+ *                     type: string
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 // This API verifies a user's security questions
 router.post("/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
-    const { selectedSecurityQuestions } = req.body; // This captures the request body
-    console.log('Logging the request body', req.body)
+    let selectedSecurityQuestions = req.body; // This captures the request body
+
+    // This ensures selectedSecurityQuestions is an array
+    if (!Array.isArray(selectedSecurityQuestions)) {
+      selectedSecurityQuestions = [selectedSecurityQuestions];
+    }
+
+    console.log("Logging the request body", req.body);
 
     console.log("Employee email", email); // This logs the email to the console
     console.log("Selected Security Questions", selectedSecurityQuestions); // This logs the securityQuestions object to the console
