@@ -44,8 +44,14 @@ const resetPasswordSchema = {
 router.post("/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
-    const { selectedSecurityQuestions } = req.body; // This captures the request body
-    console.log('Logging the request body', req.body)
+    let selectedSecurityQuestions = req.body; // This captures the request body
+
+    // This ensures selectedSecurityQuestions is an array
+    if (!Array.isArray(selectedSecurityQuestions)) {
+      selectedSecurityQuestions = [selectedSecurityQuestions];
+    }
+
+    console.log("Logging the request body", req.body);
 
     console.log("Employee email", email); // This logs the email to the console
     console.log("Selected Security Questions", selectedSecurityQuestions); // This logs the securityQuestions object to the console
