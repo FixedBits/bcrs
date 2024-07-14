@@ -1,7 +1,9 @@
 /**
  * Title: app.js
  * Author: Professor Krasso
+ * Updated by: Victor Soto
  * Date: 07/03/2024
+ * Updated by: Victor Soto
  * Description: Server for the app
  */
 
