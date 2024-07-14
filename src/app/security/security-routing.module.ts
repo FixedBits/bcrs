@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
         path: 'signin',
         component: SigninComponent,
         title: "BCRS: Signin"
+      },
+      {
+        path: 'registration',
+        component: RegistrationComponent,
+        title: 'BCRS: Register'
       }
     ]
   }
