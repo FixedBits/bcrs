@@ -33,7 +33,7 @@ const securityQuestionsSchema = {
 
 /**
  * @openapi
- * /api/security/verify/employees/{email}/security-questions:
+ * /api/verify/employees/{email}/security-questions:
  *   post:
  *     tags:
  *       - Verify Security Questions
