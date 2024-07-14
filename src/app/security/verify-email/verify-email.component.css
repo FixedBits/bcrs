@@ -1,0 +1,39 @@
+.form-container {
+  background-color: rgb(134, 211, 185);
+  margin-top: 200px;
+  padding-bottom: 500px;
+  text-align: center;
+}
+
+h1 {
+  margin: 30px;
+  font-family: Poppins;
+}
+
+input {
+  width: 300px;
+  height: 70px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.input-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  background-color: #509791;
+  width: 200px;
+  padding: 15px;
+  margin: 40px;
+  color: white;
+  font-size: 30px;
+  border-radius: 60px;
+}
+
+.return {
+  color: #181d1c;
+  text-decoration: none;
+}

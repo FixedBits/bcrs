@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
         path: 'registration',
         component: RegistrationComponent,
         title: 'BCRS: Register'
+      },
+      {
+        path: 'verify-email',
+        component: VerifyEmailComponent,
+        title: 'BCRS: Verify Email'
       }
     ]
   }

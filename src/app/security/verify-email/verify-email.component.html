@@ -1,1 +1,37 @@
-<p>verify-email works!</p>
+
+<div class="form-container">
+    <form [formGroup]="emailForm" (ngSubmit)="verifyEmail()">
+    <div *ngIf="errorMessage">
+      {{ errorMessage}}
+    </div>
+
+    <fieldset class="form-group">
+      <h1>Verify Email</h1>
+
+
+      <div class="input-container">
+       <!-- The input field for the email -->
+       <input class="form-control" formControlName="email" type="text" id="email" name="email" placeholder="Email" required>
+      </div>
+
+
+      <!-- Creating validation errors -->
+        <div *ngIf="emailForm.controls['email'].invalid && (emailForm.controls['email'].dirty || emailForm.controls['email'].touched)">
+          Email is required
+        </div>
+    </fieldset>
+
+    <button type="submit" id="submit" [disabled]="!emailForm.valid" class="btn-btn">
+      Submit
+      <div *ngIf="isLoading">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+      </div>
+
+
+    </button>
+
+    <br>
+    <!-- A link to return to the signin form -->
+    <a class="return" routerLink="/security/signin">Return</a>
+  </form>
+</div>
