@@ -167,7 +167,7 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
 
 /**
  * @openapi
- * /api/security/verify/employees/{email}/reset-password:
+ * /api/verify/security/employees/{email}/reset-password:
  *   post:
  *     tags:
  *       - Reset Password
@@ -193,8 +193,8 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
  *             required: ["password"]
  *             additionalProperties: false
  *     responses:
- *       '204':
- *         description: No Content
+ *       '200':
+ *         description: Password Changed
  *       '400':
  *         description: Bad Request
  *       '404':
@@ -205,7 +205,7 @@ router.post("/employees/:email/security-questions", (req, res, next) => {
 
 // resetPassword API
 
-router.post("/employees/:email/reset-password", (req, res, next) => {
+router.post("/security/employees/:email/reset-password", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the email parameter
     const user = req.body; // This captures the request body
@@ -256,7 +256,7 @@ router.post("/employees/:email/reset-password", (req, res, next) => {
 
       console.log("MongoDB update result", result); // This logs out the result to the console
 
-      res.status(204).send(); // This returns a 204 status code to the client
+      res.status(200).send("Success! Password reset complete."); // This returns a 200 status code to the client
     }, next);
   } catch (err) {
     console.log(`API Error: ${err.message}`); // This logs out the error to the console
