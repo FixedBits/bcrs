@@ -1,1 +1,91 @@
-<p>registration works!</p>
+<!--
+ Author: Evelyn Zepeda
+ Date: 7/13/24
+ Title: registration.component.html
+ Description: The html page for the registration form.-->
+
+<div class="registration-container">
+  <div class="form-container">
+
+    <!-- Here begins the registration form -->
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <h1>Register</h1>
+      <div class="form-info-container">
+
+        <!-- The firstName label and input(must be spelled in camel case to match code)-->
+        <label for="firstName" class="first-name">Name</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
+
+        <!-- The lastName label and input(must be spelled in camel case to match code)-->
+        <label for="lastName" class="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+
+        <!-- The email label and input-->
+        <label for="email" class="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email" name="email" required>
+
+        <!-- The password label and input-->
+        <label for="password" class="password">Password</label>
+        <input type="text" class="password" id="password" formControlName="password">
+
+        <!-- The first question for the registration process-->
+        <label for="q1">Question</label>
+        <select name="q1" formControlName="question1" id="q1" class="form-select">
+          <option *ngFor="let question of qArr1" [value]="question">{{ question }}</option>
+        </select>
+
+        <!-- Validation errors -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.controls['question1'].invalid && (registerForm.controls['question1'].dirty || registerForm.controls['question1'].touched)">
+          <div *ngIf="registerForm.controls['question1'].hasError('required')">
+            <!-- The alert displayed-->
+             Question is required.
+          </div>
+        </div>
+
+        <!-- The answer label and input field-->
+        <label for="a1">Answer:</label><br>
+        <input type="text" id="a1" formControlName="answer1" name="a1" class="form-control" required>
+
+
+      <!-- The second question for the registration process-->
+      <label for="q2">Question</label>
+      <select name="q2" formControlName="question2" id="q2" class="form-select">
+        <option *ngFor="let question of qArr2" [value]="question">{{ question }}</option>
+      </select>
+
+      <!-- Validation errors -->
+      <div class="alert alert-danger mt-2" *ngIf="registerForm.controls['question2'].invalid && (registerForm.controls['question2'].dirty || registerForm.controls['question2'].touched)">
+        <div *ngIf="registerForm.controls['question2'].hasError('required')">
+          <!-- The alert displayed-->
+           Question is required.
+        </div>
+      </div>
+
+      <!-- The answer label and input field-->
+      <label for="a2">Answer:</label><br>
+      <input type="text" id="a2" formControlName="answer2" name="a2" class="form-control" required>
+
+      <!-- The third question for the registration process-->
+      <label for="q3">Question</label>
+      <select name="q3" formControlName="question3" id="q3" class="form-select">
+        <option *ngFor="let question of qArr3" [value]="question">{{ question }}</option>
+      </select>
+
+      <!-- Validation errors -->
+      <div class="alert alert-danger mt-2" *ngIf="registerForm.controls['question3'].invalid && (registerForm.controls['question3'].dirty || registerForm.controls['question3'].touched)">
+        <div *ngIf="registerForm.controls['question3'].hasError('required')">
+          <!-- The alert displayed-->
+           Question is required.
+        </div>
+      </div>
+
+      <!-- The answer label and input field-->
+      <label for="a3">Answer:</label><br>
+      <input type="text" id="a3" formControlName="answer3" name="a3" class="form-control" required>
+
+      <!-- The submit -->
+       <input type="submit" id="submit" [disabled]="!registerForm.valid" value="Register Account" class="btn btn-lg">
+      </div>
+    </form>
+  </div>
+</div>
