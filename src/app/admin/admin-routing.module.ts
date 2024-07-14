@@ -45,6 +45,8 @@ const routes: Routes = [
     ],
     canActivate: [roleGuard]
   },
+
+  }
 ];
 
 @NgModule({

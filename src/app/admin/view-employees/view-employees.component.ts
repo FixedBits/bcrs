@@ -2,7 +2,7 @@
  * Title: view-employees.component.ts
  * Author: Victor Soto
  * Date: 07/05/2024
- * Description: View all employees.
+ * Description: View all employees
  */
 
 import { Component, OnInit } from '@angular/core'; // Import Angular core dependencies

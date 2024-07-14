@@ -18,6 +18,14 @@ const userRoutes = require("./routes/employee-route");
 const signinRoute = require('./routes/signin-route')
 const registrationRoute = require('./routes/registration')
 
+// This imports the security router
+const securityRouter = require('./routes/security');
+
+
+//Swagger variables
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express"); // Import swaggerUi
+
 // Create the Express app
 const app = express();
 
@@ -53,7 +61,11 @@ const swaggerSpecification = swaggerJsdoc(swaggerOptions);
 // Serve Swagger documentation - Swagger UI middleware.
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 
-app.use("/api/users", userRoutes); // Use the employee route.
+app.use("/api/users", userRoutes); // Use the employee route
+app.use("/api/verify", securityRouter); // Use security route
+app.use("/signin", signinRoute); // Use signin route
+
+
 
 
 //Security Routes
