@@ -121,7 +121,38 @@ router.post('/signin', async (req, res, next) => {
   }
 })
 
+/**
+ * The API to verify the user's email address
+ */
 
+router.post('/verify/employees/:email', (req, res, next) => {
+  try {
+    const email = req.params.email // Using params captures the entered email by the user in the post route
+    console.log('Employee email: ', email) // log out the email variable to the console
+
+    // call mongo
+    mongo(async db => {
+      const employee = await db.collection('employees').findOne({email: email}) // find the employee document by email
+
+      //if the employee is null then return a 404 error to the client
+      if (!employee) {
+        const err = new Error('Not Found') // create a new error object
+        err.status = 404 // set the error status to 404
+        console.log('Employee not found: ', err) // log out the error to the console
+        next(err) // return the error the client
+        return // return to exit the function
+      }
+
+      console.log('Selected employee: ', employee) // log out the employee object to the console
+
+      // send  back the employee object to the client
+      res.send(employee)
+    }, next)
+  } catch (err) {
+    console.log(`API Error: ${err.message}`) // log out the error to the console
+    next(err) // return the error to the client
+  }
+})
 
 
 module.exports = router;

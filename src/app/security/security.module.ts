@@ -16,13 +16,15 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
     SecurityComponent,
     SigninComponent,
     ResetPasswordComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,

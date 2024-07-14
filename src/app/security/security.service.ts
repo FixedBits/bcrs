@@ -17,4 +17,9 @@ export class SecurityService {
     //console.log(user)
     return this.http.post('/api/security/registration', {user})
   }
+
+  verifyEmail(email: string) {
+    //returns the verifyEmail function
+    return this.http.post('api/security/verify/employees/' + email, {})
+  }
 }
