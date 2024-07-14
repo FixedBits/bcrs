@@ -11,7 +11,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
 
-
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -34,7 +33,6 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [authGuard],
         title: 'BCRS: Home'
       },
       {

@@ -44,7 +44,7 @@ const routes: Routes = [
         title: 'BCRS View Employee'
       }
     ],
-    canActivate: [roleGuard]
+
   }
 ];
 
