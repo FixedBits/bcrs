@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     SigninComponent,
     ResetPasswordComponent,
     RegistrationComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    VerifySecurityQuestionsComponent
   ],
   imports: [
     CommonModule,
