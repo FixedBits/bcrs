@@ -1,4 +1,4 @@
-import { selectedSecurityQuestionsModel } from './../security-questions-model';
+
 /**
  * DeVonte' Ellis
  * verify-security-questions
@@ -6,7 +6,7 @@ import { selectedSecurityQuestionsModel } from './../security-questions-model';
  */
 
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
 import { FormBuilder, FormGroup, SelectControlValueAccessor, Validators } from '@angular/forms';
 import { selectedSecurityQuestionsModel } from '../security-questions-model';
@@ -27,14 +27,14 @@ export class VerifySecurityQuestionsComponent {
   question3: string
 
   //angular form group for the security questions form
-  sqForm: Formgroup = this.fb.group({
-    answer1: [null, Validators.compose[(Validators.required)]],
-    answer2: [null, Validators.compose[(Validators.required)]],
-    answer3: [null, Validators.compose[(Validators.required)]]
+  sqForm: FormGroup = this.fb.group({
+    answer1: [null, Validators.compose([Validators.required])],
+    answer2: [null, Validators.compose([Validators.required])],
+    answer3: [null, Validators.compose([Validators.required])]
   }) //end sqForm
 
   //constructor with route, router, security device and form builder parameters
-  constructor (private route: ActivatedRoute, private router: Router, private securityService: SecurityService, private fb: FormBuilder)
+  constructor (private route: ActivatedRoute, private router: Router, private securityService: SecurityService, private fb: FormBuilder){
   this.selectedSecurityQuestions = [] //initialize the selected Security questions array
   this.question1 = '' //initialize question 1
   this.question2 = ''
@@ -42,7 +42,7 @@ export class VerifySecurityQuestionsComponent {
   this.errorMessage = ''
   this.isLoadingLabels = true
   this.isLoadingSubmit = false
-  this.email = this.route.snapshot.queryParaMap.get('email') ?? ''
+  this.email = this.route.snapshot.queryParamMap.get('email') ?? ''
   console.log('Email Address:', this.email)
 
 
@@ -52,7 +52,7 @@ export class VerifySecurityQuestionsComponent {
     return
   } //end if
 
-  this.SecurityService.findSelectedSecurityQuestions(this.email).subscribe({
+  this.securityService.findSelectedSecurityQuestions(this.email).subscribe({
     next: (data: any) => {
       this.selectedSecurityQuestions = data.selectedSecurityQuestions
       console.log('Users selected security questions', this.selectedSecurityQuestions)
@@ -80,53 +80,58 @@ export class VerifySecurityQuestionsComponent {
       this.isLoadingLabels = false
     }//end complete
   }) //end subscribe
-}// end constructor
+  }// end constructor
 
-//local security questions array
-verifySecurityQuestions () {
-  this.isLoadingSubmit = true
-  console.log(this.sqForm.value)
+  //local security questions array
+  verifySecurityQuestions() {
+    this.isLoadingSubmit = true
+    console.log(this.sqForm.value)
 
-  //local security questions array and answers
+    //local security questions array and answers
 
-  let securityQuestions = [
-    {
-      question: this.question1,
-      answer: this.sqForm.controls['answer1'].value
-    },
-    {
-      question: this.question2,
-      this.sqForm.controls['answer2'].value
-    },
-    {
-    question: this.question3,
-    answer: this.sqForm.controls['answer3']
-    }
-  ] //end security questions
+    let securityQuestions = [
+      {
+        question: this.question1,
+        answer: this.sqForm.controls['answer1'].value
+      },
+      {
+        question: this.question2,
+        answer: this.sqForm.controls['answer2'].value
+      },
+      {
+      question: this.question3,
+      answer: this.sqForm.controls['answer3']
+      }
+    ] //end security questions
 
-  console.log('Employee provided security questions', securityQuestions)
+    console.log('Employee provided security questions', securityQuestions)
 
-  //call security service verifySecurity questions
-  this.securityService.verifySecurityQuestions(this.email, securityQuestions).subscribe({
-    //if the observable is successful, navigate to reset password apge
-    next:(res) => {
-      console.log('Response from verifySecurityQuestions Call', res)
-      this.router.navigate(['/security/reset-password'], { queryParams: { email: this.email }, skipLocationChange: true })
-    },
-    //if there is an error, log it to the console
-    error: (err) => {
-      if (err.error.message) {
-        this.errorMessage = err.error.message
-        console.error('Server Error from verifySecurityQuestions Call:', err.error.message)
-        return
-      } else {
-        console.error('Server Error from verifySecurityQuestions Call:', err)
-        this.errorMessage = 'There was a problem verifying your security questions. Please try again'
-        this.isLoadingSubmit = false //set the isLoading variable to false
-      } //end else
-    },
-    complete () => {
-      this.isLoadingubmit = false
-    }
-  })
+    //call security service verifySecurity questions
+    this.securityService.verifySecurityQuestions(this.email, securityQuestions).subscribe({
+
+
+      //if the observable is successful, navigate to reset password page
+      next: (res) => {
+        console.log('Response from verifySecurityQuestions Call', res)
+        this.router.navigate(['/security/reset-password'], { queryParams: { email: this.email }, skipLocationChange: true })
+      },
+
+
+      //if there is an error, log it to the console
+      error: (err) => {
+        if (err.error.message) {
+          this.errorMessage = err.error.message
+          console.error('Server Error from verifySecurityQuestions Call:', err.error.message)
+          return
+        } else {
+          console.error('Server Error from verifySecurityQuestions Call:', err)
+          this.errorMessage = 'There was a problem verifying your security questions. Please try again'
+          this.isLoadingSubmit = false //set the isLoading variable to false
+        } //end else
+      },
+      complete: () => {
+        this.isLoadingSubmit = false
+      }
+    })
+  }
 }

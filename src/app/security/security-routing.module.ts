@@ -11,6 +11,7 @@ import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
         path: 'verify-email',
         component: VerifyEmailComponent,
         title: 'BCRS: Verify Email'
+      },
+      {
+        path: 'security-questions',
+        component: VerifySecurityQuestionsComponent
       }
     ]
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationModel } from './registration-model';
 import { Observable } from 'rxjs';
+import { selectedSecurityQuestionsModel } from './security-questions-model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,14 @@ export class SecurityService {
 
   changePassword(email: string, password: string): Observable<any> {
     return this.http.post('api/security/users' + email + '/reset-password', { password }) //returns the changePassword function
+  }
+
+  findSelectedSecurityQuestions(email: string){
+    return this.http.get('/api/employees/' + email + '/security-questions')
+  }
+
+  //returns the verifySecurityQuestions function
+  verifySecurityQuestions(email: string, securityQuestions: selectedSecurityQuestionsModel[]): Observable<any> {
+    return this.http.post('/api/security/verify/employees' + email + '/security-questions', {securityQuestions})
   }
 }
