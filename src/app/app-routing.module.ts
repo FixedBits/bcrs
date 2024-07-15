@@ -15,9 +15,12 @@ import { FaqComponent } from './faq/faq.component';
 
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';
+
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 
+// Importing the directory component
+import { DirectoryComponent } from './directory/directory.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -44,6 +47,10 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent,
         title: 'BCRS: Faq'
+      },
+      {
+      path: 'directory',
+        component: DirectoryComponent
       }
     ],
   },
