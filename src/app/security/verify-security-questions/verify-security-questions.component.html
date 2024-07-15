@@ -1,1 +1,60 @@
-<p>verify-security-questions works!</p>
+<!--DeVonte Ellis-->
+
+<body>
+    <h1>Please verify your security questions</h1>
+
+  <!--Beginning of security question-->
+  <label for="ques1">Question 1</label>
+  <select name="ques1" formControlName="question1" id="q1" class="form-select">
+   <option *ngFor="let question of question1" [value]="question">{{ question }}</option>
+  </select>
+
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+   <div *ngIf="sqForm.controls['question1'].hasError('required')">
+     <!-- The alert displayed-->
+      Security Question 1
+   </div>
+  </div>
+
+  <input type="text" id="an1" formControlName="answer1" name="an1" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
+
+  <!--Beginning of security question-->
+  <label for="ques2">Question 2</label>
+  <select name="ques2" formControlName="question1" id="q2" class="form-select">
+  <option *ngFor="let question of question2" [value]="question">{{ question }}</option>
+  </select>
+
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+  <div *ngIf="sqForm.controls['question1'].hasError('required')">
+    <!-- The alert displayed-->
+     Security Question 2
+  </div>
+  </div>
+
+  <input type="text" id="an2" formControlName="answer2" name="an2" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
+
+  <!--Beginning of security question-->
+  <label for="ques3">Question 3</label>
+  <select name="ques3" formControlName="question" id="q3" class="form-select">
+  <option *ngFor="let question of question3" [value]="question">{{ question }}</option>
+  </select>
+
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+  <div *ngIf="sqForm.controls['question1'].hasError('required')">
+    <!-- The alert displayed-->
+     Security Question 3
+  </div>
+  </div>
+
+  <input type="text" id="an3" formControlName="answer3" name="an3" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
+
+
+  <input type="submit" id="submit" value="Submit" class="btn btn-lg"><br>
+  </body>
+
