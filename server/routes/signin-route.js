@@ -121,6 +121,38 @@ router.post('/signin', async (req, res, next) => {
   }
 })
 
+
+/**
+ * verifyUsers
+ * @openapi
+ * /api/security/verify/employees/{email}:
+ *   post:
+ *     tags:
+ *       - Verify Employees
+ *     name: verifyEmployees
+ *     description: API for verifying a user by email.
+ *     summary: Verifies an existing email.
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user to verify.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *           schema:
+ *             type: string
+ *     responses:
+ *       '200':
+ *         description: User verified by email
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 /**
  * The API to verify the user's email address
  */

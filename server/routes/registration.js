@@ -15,6 +15,69 @@ const router = express.Router()
 
 let saltRounds = 10;
 
+/**
+ * registerUser
+ * @openapi
+ * /api/security/registration:
+ *   post:
+ *     tags:
+ *       - Registration
+ *     name: registration
+ *     description: API for registering a new user
+ *     summary: Creates a new user document
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   phoneNumber:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   selectedSecurityQuestions:
+ *                     minItems: 3
+ *                     maxItems: 3
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         question:
+ *                           type: string
+ *                         answer:
+ *                           type: string
+ *             required:
+ *               - email
+ *               - password
+ *               - firstName
+ *               - lastName
+ *               - phoneNumber
+ *               - address
+ *               - question
+ *               - answer
+ *     responses:
+ *       '200':
+ *         description: New User created
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 
 // Creating the securityQuestionsSchema
 const securityQuestionsSchema = {
@@ -38,9 +101,11 @@ const registerSchema = {
     password: {type: 'string'},
     firstName: {type: 'string'},
     lastName: { type: 'string'},
+    phoneNumber: {type: 'string'},
+    address: { type: 'string'},
     selectedSecurityQuestions: securityQuestionsSchema
   },
-  required: ['email', 'password', 'firstName', 'lastName'],
+  required: ['email', 'password', 'firstName', 'lastName', 'phoneNumber', 'address'],
   additionalProperties: false
 };
 
@@ -51,11 +116,11 @@ router.post('/registration', (req, res, next ) => {
 
     let user = req.body.user
 
+    console.log("User:", user)
+
     console.log('Received request body:', JSON.stringify(req.body, null, 2));
 
-    console.log('User Request Body: ', user)
-
-    console.log('Check fields:', user.email, user.password, user.firstName, user.lastName, user.selectedSecurityQuestions);
+    console.log('Check fields:', user.email, user.password, user.firstName, user.lastName, user.phoneNumber, user.address, user.selectedSecurityQuestions);
 
     // Validate the request body and compile it against the registerSchema
     const validate = ajv.compile(registerSchema);
@@ -110,7 +175,10 @@ router.post('/registration', (req, res, next ) => {
         lastName: user.lastName,
         email: user.email,
         password: user.password,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
         role: 'standard',
+        isDisabled: false,
         selectedSecurityQuestions: user.selectedSecurityQuestions
       };
 

@@ -25,10 +25,7 @@ h1 {
   font-family: "Poppins", sans-serif;
 }
 
-.password {
-  border: 0;
-  border-radius: 10px;
-}
+
 
 .register-container {
  background-color: #87c5a3;
@@ -38,13 +35,11 @@ h1 {
   margin-bottom: 20px;
 }
 
-
-
-
 input {
   width: 300px;
   height: 70px;
   margin: 0 auto;
+  padding-left: 13px;
 }
 
 label {

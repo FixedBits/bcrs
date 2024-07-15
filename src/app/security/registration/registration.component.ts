@@ -29,6 +29,8 @@ export class RegistrationComponent implements OnInit {
     password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])],
     firstName: [null, Validators.compose([Validators.required])],
     lastName: [null, Validators.compose([Validators.required])],
+    phoneNumber: [null, Validators.compose([Validators.required])],
+    address: [null, Validators.compose([Validators.required])],
     question1: [null, Validators.compose([Validators.required])],
     answer1: [null, Validators.compose([Validators.required])],
     question2: [null, Validators.compose([Validators.required])],
@@ -91,6 +93,8 @@ export class RegistrationComponent implements OnInit {
         password: this.registerForm.get('password')?.value,
         firstName: this.registerForm.get('firstName')?.value,
         lastName: this.registerForm.get('lastName')?.value,
+        phoneNumber: this.registerForm.get('phoneNumber')?.value,
+        address: this.registerForm.get('address')?.value,
 
         selectedSecurityQuestions: [
           {

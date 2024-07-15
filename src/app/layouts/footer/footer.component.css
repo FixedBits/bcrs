@@ -1,0 +1,19 @@
+footer {
+  background-color: #9cca9c;
+}
+
+a {
+  text-decoration: none;
+  font-size: 40px;
+  color: black;
+}
+
+a:hover {
+  color: white;
+}
+
+
+.faq {
+  padding: 60px;
+
+}
