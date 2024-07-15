@@ -44,7 +44,7 @@ const resetPasswordSchema = {
 
 /**
  * @openapi
- * /api/security/verify/employees/{email}/security-questions:
+ * /api/verify/employees/{email}/security-questions:
  *   post:
  *     tags:
  *       - Verify Security Questions
@@ -95,7 +95,7 @@ const resetPasswordSchema = {
  */
 
 // This API verifies a user's security questions
-router.post("/employees/:email/security-questions", (req, res, next) => {
+router.post("/verify/employees/:email/security-questions", (req, res, next) => {
   try {
     const email = req.params.email; // This captures the 'email' parameter
     let selectedSecurityQuestions = req.body; // This captures the request body
