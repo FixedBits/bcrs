@@ -11,3 +11,8 @@ export interface RegistrationModel {
   address: string;
   selectedSecurityQuestions?: selectedSecurityQuestionsModel[];
 }
+
+export interface UserViewModel {
+  password: string
+  selectedSecurityQuestions: selectedSecurityQuestionsModel[]
+}

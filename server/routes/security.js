@@ -261,6 +261,35 @@ router.post("/security/employees/:email/reset-password", (req, res, next) => {
   } catch (err) {
     console.log(`API Error: ${err.message}`); // This logs out the error to the console
     next(err); // This passes the error to the next middleware in the stack
+// findSelectedSecurityQuestions API
+router.get("/:email/security-questions", (req, res, next) => {
+  try {
+    const email = req.params.email; // pulls email value from route
+    console.log("Email address:", email); // for troubleshooting purposes
+
+    mongo(async (db) => {
+      const employee = await db
+        .collection("employees")
+        .findOne(
+          { email: email },
+          { projection: { email: 1, selectedSecurityQuestions: 1 } }
+        );
+
+      console.log("Selected security questions", employee);
+
+      if (!employee) {
+        const err = new Error("Unable to find user with email" + email);
+        err.status = 404;
+        console.log("err", err); // for troubleshooting purposes
+        next(err);
+        return;
+      }
+
+      res.send(employee);
+    }, next);
+  } catch (err) {
+    console.log("err", err); // log for troubleshooting
+    next(err);
   }
 });
 
