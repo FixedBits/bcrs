@@ -261,6 +261,9 @@ router.post("/security/employees/:email/reset-password", (req, res, next) => {
   } catch (err) {
     console.log(`API Error: ${err.message}`); // This logs out the error to the console
     next(err); // This passes the error to the next middleware in the stack
+
+  }
+})
 // findSelectedSecurityQuestions API
 router.get("/:email/security-questions", (req, res, next) => {
   try {
@@ -292,5 +295,6 @@ router.get("/:email/security-questions", (req, res, next) => {
     next(err);
   }
 });
+
 
 module.exports = router;

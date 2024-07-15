@@ -35,7 +35,7 @@ const routes: Routes = [
         title: 'BCRS: Verify Email'
       },
       {
-        path: 'security-questions',
+        path: 'verify-security-questions',
         component: VerifySecurityQuestionsComponent
       }
     ]
