@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EmployeesService } from './employees.service';
 import { RouterModule } from '@angular/router';
+import { DirectoryComponent } from './directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
+    DirectoryComponent,
   ],
   imports: [
     BrowserModule,
