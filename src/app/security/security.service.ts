@@ -30,7 +30,7 @@ export class SecurityService {
   }
 
   findSelectedSecurityQuestions(email: string){
-    return this.http.get('/api/employees/' + email + '/security-questions')
+    return this.http.get('/api/employees/verify' + email + '/security-questions')
   }
 
   //returns the verifySecurityQuestions function
