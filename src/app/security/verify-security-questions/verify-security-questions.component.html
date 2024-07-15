@@ -1,71 +1,60 @@
-<!-- Author: Evelyn Zepeda
-    Date: 7/14/2024
-    Title: verify-security-questions.component.html-->
+<!--DeVonte Ellis-->
 
-<div class="form-container">
-  <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()">
+<body>
+    <h1>Please verify your security questions</h1>
 
-    <!-- An error message -->
-     <div class="alert alert-danger">
-      {{errorMessage}}
-     </div>
+  <!--Beginning of security question-->
+  <label for="ques1">Question 1</label>
+  <select name="ques1" formControlName="question1" id="q1" class="form-select">
+   <option *ngFor="let question of question1" [value]="question">{{ question }}</option>
+  </select>
 
-     <fieldset>
-      <legend>Security Questions</legend>
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+   <div *ngIf="sqForm.controls['question1'].hasError('required')">
+     <!-- The alert displayed-->
+      Security Question 1
+   </div>
+  </div>
 
-      <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <input type="text" id="an1" formControlName="answer1" name="an1" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
 
-      <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{question1}}</label>
-      <input type="text" formControlName="answer1" class="form-control">
+  <!--Beginning of security question-->
+  <label for="ques2">Question 2</label>
+  <select name="ques2" formControlName="question1" id="q2" class="form-select">
+  <option *ngFor="let question of question2" [value]="question">{{ question }}</option>
+  </select>
 
-      <!-- Validation Errors -->
-       <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['answer1'].invalid && (sqForm.controls['answer1'].dirty || sqForm.controls['answer1'].touched)">
-        <div *ngIf="sqForm.controls['answer1'].hasError('required')">
-          Answer is required
-        </div>
-       </div>
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+  <div *ngIf="sqForm.controls['question1'].hasError('required')">
+    <!-- The alert displayed-->
+     Security Question 2
+  </div>
+  </div>
 
-       <!--------------------------------------------------- Question 2 ---------------------------------------------------------------------->
+  <input type="text" id="an2" formControlName="answer2" name="an2" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
 
-       <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <!--Beginning of security question-->
+  <label for="ques3">Question 3</label>
+  <select name="ques3" formControlName="question" id="q3" class="form-select">
+  <option *ngFor="let question of question3" [value]="question">{{ question }}</option>
+  </select>
 
-      <label *ngIf="!isLoadingLabels" for="q2" class="form-label">{{question2}}</label>
-      <input type="text" formControlName="answer2" class="form-control">
+  <!-- Validation errors -->
+  <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['question1'].invalid && (sqForm.controls['question1'].dirty || sqForm.controls['question1'].touched)">
+  <div *ngIf="sqForm.controls['question1'].hasError('required')">
+    <!-- The alert displayed-->
+     Security Question 3
+  </div>
+  </div>
 
-      <!-- Validation Errors -->
-       <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['answer2'].invalid && (sqForm.controls['answer2'].dirty || sqForm.controls['answer2'].touched)">
-        <div *ngIf="sqForm.controls['answer2'].hasError('required')">
-          Answer is required
-        </div>
-       </div>
+  <input type="text" id="an3" formControlName="answer3" name="an3" class="form-control" required placeholder="Please Answer Here"><br>
+  <!--End of security Question-->
 
 
-       <!----------------------------------------------------- Question 3 --------------------------------------------------------->
-       <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <input type="submit" id="submit" value="Submit" class="btn btn-lg"><br>
+  </body>
 
-      <label *ngIf="!isLoadingLabels" for="q3" class="form-label">{{question3}}</label>
-      <input type="text" formControlName="answer3" class="form-control">
-
-      <!-- Validation Errors -->
-       <div class="alert alert-danger mt-2" *ngIf="sqForm.controls['answer3'].invalid && (sqForm.controls['answer3'].dirty || sqForm.controls['answer3'].touched)">
-        <div *ngIf="sqForm.controls['answer3'].hasError('required')">
-          Answer is required
-        </div>
-       </div>
-     </fieldset>
-
-     <button type="submit" id="submit" [disabled]="!sqForm.valid" class="btn">
-      <span *ngIf="!isLoadingSubmit">Verify Security Questions</span>
-
-      <div *ngIf="isLoadingSubmit">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
-      </div>
-     </button>
-  </form>
-</div>
