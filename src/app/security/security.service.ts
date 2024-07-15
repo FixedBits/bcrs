@@ -35,6 +35,6 @@ export class SecurityService {
 
   //returns the verifySecurityQuestions function
   verifySecurityQuestions(email: string, securityQuestions: selectedSecurityQuestionsModel[]): Observable<any> {
-    return this.http.post('/api/users' + email + '/security-questions', {securityQuestions})
+    return this.http.post('/api/users/' + email + '/security-questions', {securityQuestions})
   }
 }

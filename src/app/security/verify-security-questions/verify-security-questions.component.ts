@@ -34,7 +34,13 @@ export class VerifySecurityQuestionsComponent {
   }) //end sqForm
 
   //constructor with route, router, security device and form builder parameters
-  constructor (private route: ActivatedRoute, private router: Router, private securityService: SecurityService, private fb: FormBuilder){
+  constructor (
+    private route: ActivatedRoute,
+    private router: Router,
+    private securityService: SecurityService,
+    private fb: FormBuilder){
+
+
   this.selectedSecurityQuestions = [] //initialize the selected Security questions array
   this.question1 = '' //initialize question 1
   this.question2 = ''
@@ -100,7 +106,7 @@ export class VerifySecurityQuestionsComponent {
       },
       {
       question: this.question3,
-      answer: this.sqForm.controls['answer3']
+      answer: this.sqForm.controls['answer3'].value
       }
     ] //end security questions
 
