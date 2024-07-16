@@ -1,5 +1,6 @@
 footer {
   background-color: #9cca9c;
+  display: flex;
 }
 
 a {
@@ -12,8 +13,11 @@ a:hover {
   color: white;
 }
 
-
 .faq {
   padding: 60px;
+}
 
+.empdir {
+  margin-right: 20px;
+  padding: 60px;
 }
