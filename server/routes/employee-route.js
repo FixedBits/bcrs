@@ -596,6 +596,18 @@ const securityQuestionsSchema = {
   },
 };
 
+
+/**
+ * The following API relates to the userRoutes variable meaning:
+ *
+ * app.use("/api/users", userRoutes); // Use the employee route
+ *
+ * Therefore the first part of the route above must be included
+ * when it is called elsewhere otherwise it will not function.
+ *
+ */
+
+
 // This API verifies a user's security questions
 router.post("/:email/security-questions", (req, res, next) => {
   try {

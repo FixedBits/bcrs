@@ -22,7 +22,7 @@ export class ResetPasswordComponent {
 
   //change password form
   changePasswordForm: FormGroup = this.fb.group({
-    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z](?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])] //password field
+    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])] //password field
   })
 
   constructor (private fb: FormBuilder, private SecurityService: SecurityService, private route: ActivatedRoute, private router: Router) {
