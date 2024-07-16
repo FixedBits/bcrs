@@ -1,3 +1,10 @@
+/**
+ * Author: Evelyn, Devonte, Victor
+ * Date: 7/7/24
+ * Title: security.service.ts
+ * Description: A service that returns API routes.
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationModel } from './registration-model';
@@ -7,6 +14,16 @@ import { selectedSecurityQuestionsModel } from './security-questions-model';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * A service is a way of reusing code.
+ * The API calls might be reused.
+ * For example if you create additional components that are
+ * making a call to the same API.
+ * So if another part of the application needs to GET an email
+ * you can easily call the function inside the service.
+ */
+
 export class SecurityService {
 
   constructor(private http: HttpClient) { }
