@@ -582,40 +582,85 @@ router.delete('/:userId', async (req, res, next) => {
  * test/route: localhost:3000/api/users/:email/security-questions (dash is required)
  */
 
-router.post('/:email/security-questions', (req, res, next) => {
+// This is the schema for securityQuestions API
+const securityQuestionsSchema = {
+  type: "array",
+  items: {
+    type: "object",
+    properties: {
+      question: { type: "string" },
+      answer: { type: "string" },
+    },
+    required: ["question", "answer"],
+    additionalProperties: false,
+  },
+};
+
+// This API verifies a user's security questions
+router.post("/:email/security-questions", (req, res, next) => {
   try {
-    const email = req.params.email //employee email
+    const email = req.params.email; // This captures the 'email' parameter
+    let {securityQuestions} = req.body; // This captures the request body
 
-    console.log('email', email) // log the email to the console
+    console.log("Logging the request body", req.body);
 
-    // call the mongo module and pass in the operations function
-    mongo(async db => {
+    console.log("Employee email", email); // This logs the email to the console
+    console.log("Selected Security Questions", securityQuestions); // This logs the securityQuestions object to the console
 
-      // query to find the employee email and return only the securityQuestions property
-      const employee = await db.collection('employees').findOne(
-        { email: email},
-        { projection: { email: 1, empId: 1, selectedSecurityQuestions: 1 } },
-      )
+    // This validates the securityQuestions object against the securityQuestionsSchema
+    const validate = ajv.compile(securityQuestionsSchema);
+    const valid = validate(securityQuestions);
 
-      console.log('Selected security questions', employee) //log out the securityQuestions array to the console
+    // This returns a 400 error if the securityQuestions object is invalid
+    if (!valid) {
+      const err = new Error("Bad Request"); // This creates a new Error object
+      err.status = 400; // This sets the error status to 400
+      err.errors = validate.errors; // This sets the error object's errors property to the validate.errors object
+      console.log("securityQuestions validation errors", validate.errors);
+      next(err); // This passes the error to the next middleware in the stack
+      return; // Return to exit the function
+    }
+    // This calls the mongo module to pass in the operations function
+    mongo(async (db) => {
+      const employee = await db
+        .collection("employees")
+        .findOne({ email: email }); // This finds the employee by email
 
+      // if the employee is not found, this will return a 404 error
       if (!employee) {
-        //if the employee isn't found
-        const err = new Error('Unable to find employee with email ' + email)
-        err.status = 404
-        console.log('err', err)
-        next(err) //forward the error to the error handler
-        return // return to exit the function
+        const err = new Error("Not Found"); // This creates a new Error object
+        err.status = 404; // This sets the error status to 404
+        console.log("Employee not found", err); // This logs the error to the console
+        next(err); // This passes the error to the next middleware in the stack
+        return; // Return to exit the function
       }
 
-      res.send(employee) // return the employee object
-    }, next)
-  } catch (err) {
-    console.log('err', err) // log out the error to the console
-    next(err) //forward the error to the error handler
-  }
-})
+      console.log("Selected Employee", employee); // This logs the employee object to the console
 
+      // This returns a 401 error if the security questions do not match
+      if (
+        securityQuestions[0].answer !==
+          employee.selectedSecurityQuestions[0].answer ||
+        securityQuestions[1].answer !==
+          employee.selectedSecurityQuestions[1].answer ||
+        securityQuestions[2].answer !==
+          employee.selectedSecurityQuestions[2].answer
+      ) {
+        const err = new Error("Unauthorized"); // This creates a new Error object
+        err.status = 401; // This sets the error status to 401
+        err.message = "Unauthorized: Security questions do not match"; // This sets the error message to 'Security questions do not match'
+        console.log("Security questions do not match", err); // This logs the error to the console
+        next(err); // This passes the error to the next middleware in the stack
+        return; // Return to exit the function
+      }
+
+      res.send(employee); // This returns the employee object to the client
+    }, next);
+  } catch (err) {
+    console.log(`API Error: ${err.message}`); // This logs the error to the console
+    next(err); // This passes the error to the next middleware in the stack
+  }
+});
 
 
 module.exports = router;

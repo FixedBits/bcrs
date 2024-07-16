@@ -8,7 +8,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { FormBuilder, FormGroup, SelectControlValueAccessor, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { selectedSecurityQuestionsModel } from '../security-questions-model';
 
 @Component({
@@ -16,6 +16,9 @@ import { selectedSecurityQuestionsModel } from '../security-questions-model';
   templateUrl: './verify-security-questions.component.html',
   styleUrls: ['./verify-security-questions.component.css']
 })
+
+
+
 export class VerifySecurityQuestionsComponent {
   selectedSecurityQuestions: selectedSecurityQuestionsModel[] // security questions model array
   email: string
