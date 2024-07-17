@@ -8,7 +8,7 @@
 .form-container {
   width: 40%;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 50px;
   background-color: rgb(134, 211, 185);
   box-shadow: 5px 10px 15px #4d5853;
   border-radius: 60px;
@@ -23,44 +23,45 @@ form {
 
 h1 {
   font-family: "Poppins", sans-serif;
+  font-size: 30px;
 }
-
 
 
 .register-container {
  background-color: #87c5a3;
   border-radius: 10px;
-  padding-bottom: 50px;
-  padding-top: 60px;
+  padding-bottom: 40px;
+  padding-top: 30px;
   margin-bottom: 20px;
 }
 
 input {
-  width: 300px;
-  height: 70px;
+  width: 200px;
+  height: 40px;
   margin: 0 auto;
   padding-left: 13px;
 }
 
 label {
   font-family: "League Spartan", 'Times New Roman', Times, serif;
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 5px;
   padding-bottom: 3px;
 }
 
 select {
-  width: 300px;
+  width: 200px;
   margin: 0 auto;
 }
 
-.btn {
+#submit {
   border: none;
-  background-color: #509791;
-  width: 300px;
-  color: white;
-  font-size: 30px;
+  width: 200px;
   border-radius: 60px;
-
+  background-color: #2dafa4;
+  font-size: 20px;
 }
 
+#submit:hover {
+  color: #fff;
+}

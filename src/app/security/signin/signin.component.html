@@ -7,7 +7,7 @@
     <div class="img-container"><img class="grid-item" src="../../../assets/signin-computer-guy.jpg"></div>
 
 
-    <div class="grid-item">
+    <div class="grid-item" id="signin-padding">
 
         <!-- Error message -->
       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -18,8 +18,7 @@
       <form [formGroup]="signinForm" (ngSubmit)="signIn(); signinForm.reset();">
 
         <div class="info-container"><div class="form-info"><h2>Sign In</h2>
-          <label for="email" class="form-label">Email:</label>
-          <input type="text" class="form-control" id="email" formControlName="email">
+          <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
         </div></div>
 
 
@@ -42,8 +41,8 @@
               <!-- Password input label -->
         <div class="info-container">
           <div class="form-info">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="password" formControlName="password">
+
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
           </div>
         </div>
 
@@ -61,7 +60,7 @@
 
 
         <div class="info-container">
-          <button  type="submit" class="btn">
+          <button  type="submit">
             <span *ngIf="!isLoading" >Sign In</span>
 
             <div *ngIf="isLoading">
@@ -78,12 +77,14 @@
 
 
 
-        <a routerLink="/" class="text-dark text-underline-hover info-container">Return</a>
+        <a routerLink="/" class="info-container" id="return">Return</a>
 
-        <div class="logo">
-          <img src="../../../assets/snek.jpg">
-        </div>
+
+
+
       </form>
+
+      <img id='logo' src="../../../assets/snek.jpg">
       <br><br><br>
   </div>
 

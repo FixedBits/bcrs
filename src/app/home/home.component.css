@@ -63,16 +63,15 @@ p {
 
 button {
   border: none;
-  background-color: #46c2b7;
-  width: 160px;
-  color: white;
-  font-size: 20px;
-  border-radius: 40px;
-  padding: 10px;
+  padding: 20px;
+  width: 150px;
+  margin-bottom: 50px;
+  border-radius: 60px;
+  background-color: #2dafa4;
 }
 
 button:hover {
-  background-color: #347a63;
+  color: #fff;
 }
 
 .services {
