@@ -18,7 +18,7 @@ let saltRounds = 10;
 /**
  * registerUser
  * @openapi
- * /api/security/registration:
+ * /api/register/registration:
  *   post:
  *     tags:
  *       - Registration

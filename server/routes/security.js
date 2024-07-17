@@ -127,10 +127,13 @@ router.post('/signin', async (req, res, next) => {
 })
 
 
+
+
+
 /**
  * verifyUsers
  * @openapi
- * /api/security/verify/employees/{email}:
+ * /api/security/employees/{email}:
  *   post:
  *     tags:
  *       - Verify Employees
@@ -142,11 +145,6 @@ router.post('/signin', async (req, res, next) => {
  *         in: path
  *         required: true
  *         description: The email address of the user to verify.
- *     requestBody:
- *       required: true
- *       content:
- *           schema:
- *             type: string
  *     responses:
  *       '200':
  *         description: User verified by email
@@ -161,6 +159,7 @@ router.post('/signin', async (req, res, next) => {
 /**
  * The API to verify the user's email address
  */
+
 
 router.post('/employees/:email', (req, res, next) => {
   try {
@@ -205,63 +204,12 @@ const resetPasswordSchema = {
   additionalProperties: false,
 };
 
-/**
- * @openapi
- * /api/verify/employees/{email}/security-questions:
- *   post:
- *     tags:
- *       - Verify Security Questions
- *     summary: Verify a user's security questions
- *     description: This API verifies a user's security questions by comparing the answers provided in the request body with the ones stored in the database.
- *     parameters:
- *       - in: path
- *         name: email
- *         schema:
- *           type: string
- *         required: true
- *         description: The email of the user to verify
- *     requestBody:
- *       description: The security questions and answers to verify
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: array
- *             items:
- *               type: object
- *               properties:
- *                 question:
- *                   type: string
- *                 answer:
- *                   type: string
- *               required: ["question", "answer"]
- *     responses:
- *       '200':
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   question:
- *                     type: string
- *                   answer:
- *                     type: string
- *       '400':
- *         description: Bad Request
- *       '404':
- *         description: Not Found
- *       '500':
- *         description: Internal Server Error
- */
 
 
 
 /**
  * @openapi
- * /api/verify/security/employees/{email}/reset-password:
+ * /api/security/verify/users/{email}/reset-password:
  *   post:
  *     tags:
  *       - Reset Password
@@ -358,6 +306,10 @@ router.post("/verify/users/:email/reset-password", (req, res, next) => {
 
   }
 })
+
+
+
+
 // findSelectedSecurityQuestions API
 router.get("/verify/users/:email/security-questions", (req, res, next) => {
   try {
@@ -391,6 +343,66 @@ router.get("/verify/users/:email/security-questions", (req, res, next) => {
 });
 
 
+
+/**
+ * The following API relates to the userRoutes variable meaning:
+ *
+ * app.use("/api/users", userRoutes); // Use the employee route
+ *
+ * Therefore the first part of the route above must be included
+ * when it is called elsewhere otherwise it will not function.
+ *
+ */
+
+/**
+ * verifySecurityQuestions
+ * @openapi
+ * /api/security/verify/users/{email}/security-questions:
+ *   post:
+ *     tags:
+ *       - verifySecurityQuestions
+ *     name: verifySecurityQuestions
+ *     description: Verify a user's security questions by their email address.
+ *     summary: Verify Security Questions for a User
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user to verify.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               securityQuestions:
+ *                 type: array
+ *                 minItems: 3
+ *                 maxItems: 3
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     questionText:
+ *                       type: string
+ *                     answerText:
+ *                       type: string
+ *             required:
+ *               - securityQuestions
+ *     responses:
+ *       200:
+ *         description: Security Questions verified.
+ *       400:
+ *         description: Bad Request.
+ *       404:
+ *         description: Not Found.
+ *       500:
+ *         description: Internal Server Error.
+ */
+
+
 // This is the schema for securityQuestions API
 const securityQuestionsSchema = {
   type: "array",
@@ -404,17 +416,6 @@ const securityQuestionsSchema = {
     additionalProperties: false,
   },
 };
-
-
-/**
- * The following API relates to the userRoutes variable meaning:
- *
- * app.use("/api/users", userRoutes); // Use the employee route
- *
- * Therefore the first part of the route above must be included
- * when it is called elsewhere otherwise it will not function.
- *
- */
 
 
 // This API verifies a user's security questions
