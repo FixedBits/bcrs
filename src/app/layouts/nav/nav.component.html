@@ -4,22 +4,38 @@
  Title: nav.component.html
  Description: The nav component for BCRS-->
 
-<nav class="navbar">
 
-  <div class="navdiv">
-    <div class="logo">
-      <a href="#">
-      <img src="../../../assets/snek.jpg"></a>
-      <h2>Bob's Computer Repair Shop</h2>
+ <nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="logo">
+        <a routerLink="/home">
+          <img src="../../../assets/snek.jpg" alt="Logo"></a>
+          <h2>Bob's Computer Repair Shop</h2>
+      </div>
+      <div class="container nav-half">
+        <ul class="navbar me-auto mb-2 mb-lg-0 d-flex justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sign In
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/security/signin">Login/Register</a></li>
+              <li><a class="dropdown-item" routerLink="/directory">Employee Directory</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <div class="hide" *ngIf="isSignedIn">
+                <li class="dropdown-item"><a class="dropdown-item" (click)="signout()">Signout</a></li>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li>
-        <a routerLink="/home">Home</a>
-      </li>
-      <li>
-        <a routerLink="/security/signin" >Login/Register</a>
-      </li>
-    </ul>
   </div>
-
 </nav>

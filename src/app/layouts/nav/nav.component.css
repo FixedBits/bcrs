@@ -1,14 +1,8 @@
-.navbar {
+nav {
   background-color: #9cca9c;
   border-bottom: rgb(0, 0, 0) solid 2px;
 }
 
-.navdiv {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .logo {
   width: 50%;
@@ -35,7 +29,7 @@ li {
 }
 
 li a {
-  color: #fff;
+  color: #000;
   margin-right: 25px;
   text-decoration: none;
 }
@@ -51,4 +45,9 @@ img {
   margin-left: 25px;
   margin-right: 10px;
   width: 150px;
+}
+
+
+.nav-half {
+  width: 100%;
 }
