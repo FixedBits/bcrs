@@ -60,6 +60,7 @@ const routes: Routes = [
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
+    // lazy loading means that it will only be loaded once it is requested(when you click on it)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
   },

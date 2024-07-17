@@ -34,24 +34,24 @@ export class SecurityService {
 
   registration(user: RegistrationModel) {
     //console.log(user)
-    return this.http.post('/api/security/registration', {user})
+    return this.http.post('/api/register/registration', {user})
   }
 
   verifyEmail(email: string) {
     //returns the verifyEmail function
-    return this.http.post('api/security/verify/employees/' + email, {})
+    return this.http.post('api/security/employees/' + email, {})
   }
 
   changePassword(email: string, password: string): Observable<any> {
-    return this.http.post('api/security/users' + email + '/reset-password', { password }) //returns the changePassword function
+    return this.http.post('api/security/verify/users/' + email + '/reset-password', { password }) //returns the changePassword function
   }
 
   findSelectedSecurityQuestions(email: string){
-    return this.http.get('/api/verify/' + email + '/security-questions')
+    return this.http.get('/api/security/verify/users/' + email + '/security-questions')
   }
 
   //returns the verifySecurityQuestions function
   verifySecurityQuestions(email: string, securityQuestions: selectedSecurityQuestionsModel[]): Observable<any> {
-    return this.http.post('/api/users/' + email + '/security-questions', {securityQuestions})
+    return this.http.post('/api/security/verify/users/' + email + '/security-questions', {securityQuestions})
   }
 }
