@@ -1,3 +1,12 @@
+.background {
+  background-color: #f0f0f0;
+}
+
+.home-body {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two equal columns */
@@ -6,17 +15,20 @@
 
 .grid-item {
   background-color: #6dc8c3;
-  padding: 20px;
   text-align: center;
 }
 
 
 img {
-  width: 80%;
+  width: 70%;
   border-radius: 30px;
   box-shadow: 14px 14px 7px #6d7575;
   margin: 15px;
+}
 
+#bob {
+  width: 55%;
+  margin-bottom: 30px;
 }
 
 .slogan {
@@ -30,17 +42,15 @@ img {
 }
 
 h1 {
-  padding: 50px;
   font-family: "Angkor";
-  font-size: 60px;
+  font-size: 30px;
   font-weight: 100;
-  margin-top: 100px;
+  padding-top: 40px;
 }
 
 p {
-  line-height: 62px;
-  padding: 30px;
-  font-size: 40px;
+  line-height: 40px;
+  font-size: 20px;
   border-radius: 20px;
 }
 
@@ -54,12 +64,15 @@ p {
 button {
   border: none;
   background-color: #46c2b7;
-  width: 300px;
-  padding: 30px;
-  margin: 50px;
+  width: 160px;
   color: white;
-  font-size: 30px;
-  border-radius: 60px;
+  font-size: 20px;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #347a63;
 }
 
 .services {
@@ -71,11 +84,11 @@ button {
 .service-item {
   background-color: #f0f5f7;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 h3 {
-  font-size: 40px;
+  font-size: 20px;
   padding: 15px;
   font-weight: 700;
 }

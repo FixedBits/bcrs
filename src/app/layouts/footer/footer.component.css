@@ -1,11 +1,13 @@
 footer {
   background-color: #9cca9c;
   display: flex;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 a {
   text-decoration: none;
-  font-size: 40px;
+  font-size: 20px;
   color: black;
 }
 
@@ -14,10 +16,10 @@ a:hover {
 }
 
 .faq {
-  padding: 60px;
+  padding: 10px;
 }
 
 .empdir {
   margin-right: 20px;
-  padding: 60px;
+  padding: 10px;
 }

@@ -10,15 +10,12 @@ nav {
 
 h2 {
   color: black;
-  padding: 40px 0 0 5px;
   font-family:  "Poppins";
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 300;
+  margin-top: 15px;
 }
 
-ul {
-  padding-top: 10px;
-}
 
 
 li {
@@ -35,19 +32,23 @@ li a {
 }
 
 a {
-  font-family: "League Spartan";
-  font-size: 50px;
-  font-weight: 500;
+  font-family: Poppins, sans-serif;
+  font-size: 30px;
+}
+
+a:hover {
+  background-color: #5fa08a;
+  padding: 5px;
 }
 
 img {
   float: left;
   margin-left: 25px;
   margin-right: 10px;
-  width: 150px;
+  width: 80px;
 }
 
 
 .nav-half {
-  width: 100%;
+  width: 50%;
 }
