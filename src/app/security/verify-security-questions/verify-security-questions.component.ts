@@ -8,7 +8,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { FormBuilder, FormGroup, SelectControlValueAccessor, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { selectedSecurityQuestionsModel } from '../security-questions-model';
 
 @Component({
@@ -16,6 +16,9 @@ import { selectedSecurityQuestionsModel } from '../security-questions-model';
   templateUrl: './verify-security-questions.component.html',
   styleUrls: ['./verify-security-questions.component.css']
 })
+
+
+
 export class VerifySecurityQuestionsComponent {
   selectedSecurityQuestions: selectedSecurityQuestionsModel[] // security questions model array
   email: string
@@ -34,7 +37,13 @@ export class VerifySecurityQuestionsComponent {
   }) //end sqForm
 
   //constructor with route, router, security device and form builder parameters
-  constructor (private route: ActivatedRoute, private router: Router, private securityService: SecurityService, private fb: FormBuilder){
+  constructor (
+    private route: ActivatedRoute,
+    private router: Router,
+    private securityService: SecurityService,
+    private fb: FormBuilder){
+
+
   this.selectedSecurityQuestions = [] //initialize the selected Security questions array
   this.question1 = '' //initialize question 1
   this.question2 = ''
@@ -100,7 +109,7 @@ export class VerifySecurityQuestionsComponent {
       },
       {
       question: this.question3,
-      answer: this.sqForm.controls['answer3']
+      answer: this.sqForm.controls['answer3'].value
       }
     ] //end security questions
 

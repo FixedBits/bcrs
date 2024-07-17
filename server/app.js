@@ -15,11 +15,8 @@ const createServer = require("http-errors");
 
 // Route definitions
 const userRoutes = require("./routes/employee-route");
-const signinRoute = require('./routes/signin-route')
 const registrationRoute = require('./routes/registration')
-
-// This imports the security router
-const securityRouter = require('./routes/security');
+const securityRouter = require('./routes/security');// This imports the security router
 
 
 // Create the Express app
@@ -57,17 +54,10 @@ const swaggerSpecification = swaggerJsdoc(swaggerOptions);
 // Serve Swagger documentation - Swagger UI middleware.
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 
+//Defining the routes
 app.use("/api/users", userRoutes); // Use the employee route
-app.use("/api/verify", securityRouter); // Use security route
-app.use("/signin", signinRoute); // Use signin route
-
-
-
-
-
-//Security Routes
-app.use('/api/security', signinRoute)
-app.use('/api/security', registrationRoute)
+app.use("/api/security", securityRouter); // Use security route
+app.use('/api/register', registrationRoute)
 
 app.use((req, res, next) => {
   console.log('Request received:', req.method, req.url, JSON.stringify(req.body, null, 2));

@@ -12,6 +12,7 @@ import { SigninComponent } from './signin/signin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
       {
         path: 'verify-security-questions',
         component: VerifySecurityQuestionsComponent
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+        title: 'BCRS: Reset Password'
       }
     ]
   }
