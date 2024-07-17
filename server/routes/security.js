@@ -74,15 +74,15 @@ router.post('/signin', async (req, res, next) => {
     console.log('Sign in object:', signin);
 
     //Use ajv to match signin information with the schema
-    const validator = ajv.compile(signinSchema);
-    const isValid = validator(signin)
+    const validate = ajv.compile(signinSchema);
+    const valid = validate(signin)
 
     // Check to see if the if the signin matches otherwise return an error for a bad request
-    if(!isValid){
+    if(!valid){
       const err = new Error('Bad Request')
       err.status = 400;
       err.errors = validator.errors;
-      console.log('Signin validation errors:', validator.errors)// logs out the errors to the console
+      console.log('Signin validation errors:', validate.errors)// logs out the errors to the console
       next(err) //returns the next error
       return //exits the function
     }
@@ -107,6 +107,15 @@ router.post('/signin', async (req, res, next) => {
 
       // This compares the password in the signin object to the password in the employee document
       let passwordIsValid = bcrypt.compareSync(signin.password, employee.password)
+
+      //if the password is not valid return a 401 error the the client
+      if(!passwordIsValid) {
+        const err = new Error('Unauthorized') //create the error object
+        err.status = 401; // set the error to 401
+        console.log('Invalid password for user', err) // log out the error to the console
+        next(err) // return the error to the client
+        return // exit the function
+      }
 
       //Debugging entered password and comparison result
       console.log('Entered password:', signin.password)

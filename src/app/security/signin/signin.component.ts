@@ -1,3 +1,4 @@
+import { SessionUser } from './../../layouts/nav/nav.component';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +13,9 @@ import { SecurityService } from '../security.service';
 })
 export class SigninComponent {
 
-  errorMessage: string
-  isLoading: boolean = false
+  errorMessage: string;
+  sessionUser: SessionUser;
+  isLoading: boolean = false;
 
   /**
    * FormBuilder or 'fb' is a service that helps streamline the creation of form controls and groups.
@@ -50,9 +52,11 @@ export class SigninComponent {
     private route: ActivatedRoute
   ){
     this.errorMessage = ''
+    this.sessionUser = {} as SessionUser;
   }
 
   signIn() {
+
     this.isLoading = true; //sets isLoading to true to display the loading spinner
     console.log('Sign in Form:', this.signinForm.value)
 
@@ -70,16 +74,9 @@ export class SigninComponent {
       next: (user: any) => {
         console.log('User:', user);
 
-        // create the sessionCookie object with the employee's full name and role properties from the Security API
-        const sessionCookie = {
-          fullName: `${user.firstName} ${user.lastName}`,
-          role: user.role,
-          email: user.email,
-
-        }
-
+        this.sessionUser = user;
         //gives user two session cookies to name and Id
-        this.cookieService.set('session_user', JSON.stringify(sessionCookie), 1); // sets the session_user cookie
+        this.cookieService.set('session_user', JSON.stringify(this.sessionUser), 1); // sets the session_user cookie
 
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; //if there is no return url redirect the user to the homepage
         this.isLoading = false;
@@ -91,11 +88,16 @@ export class SigninComponent {
 
         console.log('err', err)
 
-        if(err.error.status === 401) {
+        if(err.error.message) {
+
           //to set the value of the error message
-          this.errorMessage = 'Invalid email and/or password. Please try again.'
+          //check if there is an err.error.message property
+          this.errorMessage = err.error.message;
           return
           }
+
+          // if not display the standard error message
+          this.errorMessage = err.message;
         }
       })
     }
