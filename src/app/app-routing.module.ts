@@ -21,6 +21,8 @@ import { roleGuard } from './guards/role.guard';
 
 // Importing the directory component
 import { DirectoryComponent } from './directory/directory.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceComponent } from './service-repair/invoice/invoice.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -51,6 +53,16 @@ const routes: Routes = [
       {
       path: 'directory',
         component: DirectoryComponent
+      },
+      {
+        path: 'service-repair',
+        component: ServiceRepairComponent,
+        title: 'Service Repair',
+      },
+      {
+        path: 'invoice',
+        component: InvoiceComponent,
+        title: 'BCRS Invoice'
       }
     ],
   },

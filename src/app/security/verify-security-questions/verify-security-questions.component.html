@@ -22,13 +22,6 @@
   <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{question1}}</label>
   <input type="text" formControlName="answer1" class="form-control" placeholder="Please enter answer here">
 
-  <!-- Validation Errors -->
-   <div class="alert alert-danger" *ngIf="sqForm.controls['answer1'].invalid && (sqForm.controls['answer1'].dirty || sqForm.controls['answer1'].touched)">
-    <div ngIf="sqForm.controls['answer1'].hasError('required')">
-      Answer is required.
-    </div>
-   </div>
-
 
 
   <!--End of security Question 1-->
@@ -43,7 +36,7 @@
 
   <!-- Validation Errors -->
   <div class="alert alert-danger" *ngIf="sqForm.controls['answer2'].invalid && (sqForm.controls['answer1'].dirty || sqForm.controls['answer2'].touched)">
-    <div ngIf="sqForm.controls['answer2'].hasError('required')">
+    <div *ngIf="sqForm.controls['answer2'].hasError('required')">
       Answer is required.
     </div>
    </div>
@@ -58,7 +51,7 @@
 
   <!-- Validation Errors -->
   <div class="alert alert-danger" *ngIf="sqForm.controls['answer3'].invalid && (sqForm.controls['answer3'].dirty || sqForm.controls['answer3'].touched)">
-    <div ngIf="sqForm.controls['answer1'].hasError('required')">
+    <div *ngIf="sqForm.controls['answer1'].hasError('required')">
       Answer is required.
     </div>
    </div>

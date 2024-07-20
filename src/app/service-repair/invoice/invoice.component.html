@@ -1,0 +1,40 @@
+  <div class="container">
+    <h2>Order #{{ order.id }}</h2>
+    <div class="order-date">
+      {{ order.date | date}}
+    </div>
+
+    <h3>Selected Menu Items</h3>
+
+    <div class="order-summary">
+      <div *ngFor="let item of order.menuItems">
+        <div>
+          {{item.name}}
+        </div>
+        <div> {{item.price | currency}}</div>
+      </div>
+
+      <div>
+        <h3>Parts</h3>
+        <div>
+          {{order.parts | currency}}
+        </div>
+      </div>
+
+      <div>
+        <h3>Labor</h3>
+        <div>
+          {{ order.labor | currency}}
+        </div>
+      </div>
+
+      <div class="order-total">
+        <h3>Order Total</h3>
+        <div>
+          {{order.orderTotal | currency}}
+        </div>
+      </div>
+
+      <a class="return" routerLink="/">Place new order</a>
+    </div>
+  </div>
