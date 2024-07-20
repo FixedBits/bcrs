@@ -41,7 +41,7 @@ export class ServiceRepairComponent {
   console.log('Ordered Items:', this.order.menuItems) // log ordered items to the console
   console.log('Order Parts:', this.order.parts) // logs the parts
 
-  console.log('Order Labor', this.order.parts) // logs the labor
+  console.log('Order Labor', this.order.labor) // logs the labor
 
   console.log('Order Total:', this.order.getOrderTotal()) // log the order total
 

@@ -30,15 +30,17 @@ export class Order {
 
     for (let product of this.menuItems) {
       total += product.price; // add product price to the total
-      laborTotal += this.labor * 50;
+      laborTotal = this.labor * 50;
     } // end of for loop
 
       console.log('Menu Items Total: ', total) // log the subtotal to the console
       console.log('Labor Total:', laborTotal)
       // add parts and labor to the total
-      total += laborTotal
+      total = total + laborTotal
 
 
+      console.log('Total before parseFloat: ', total)
+      console.log('Labor after parseFloat', laborTotal)
       total = total + parseFloat(this.parts.toString());
 
       console.log('Total after parts and labor: ', total)
