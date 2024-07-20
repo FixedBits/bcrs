@@ -1,1 +1,158 @@
-<p>profile works!</p>
+<div class="container-fluid mt-6 style=min-height: 600px">
+  <div class="row justify-content-center">
+    <div class="col-md-4 mb-3">
+      <div class="card border-0">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="avatar-placeholder text-light" [ngStyle]="{'background-color': randomAvatarColor}">
+              {{ userInitials }}
+            </div>
+            <div class="mt-3">
+              <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+              <p class="text-secondary mb-1">{{ user.email }}</p>
+
+              <div *ngIf="errorMessage">
+                <div class="alert alert-danger">
+                  {{ errorMessage }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--end row-->
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 nb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-primary mr-2"></i>Basic Info</h6>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">User ID</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ user.userId }}
+            </div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">First Name</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ user.firstName }}
+            </div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Email</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ user.email }}
+            </div>
+          </div>
+          <hr />
+          <!--top finish-->
+
+          <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-lg bg-dark text-white nx-auto d-block w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                Edit
+              </button>
+              <!--RouterLink-->
+            </div>
+          </div>
+          <!--line81-->
+
+          <div class="offcanvas offcanvas-end" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h4 id="offcanvasRightLabel" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px; font-weight: 400; letter-spacing: 1px;">Profile Settings</h4>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" (click)="close()" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <form [formGroup]="profileForm" (ngSubmit)="saveChanges();">
+                <fieldset class="form-group">
+                  <legend>Contact Information</legend>
+
+                  <!--Validation/success errors errors-->
+                  <div *ngIf="profileOnSaveError">
+                    <div class="alert alert-danger">
+                      {{ profileOnSaveError }}
+                    </div>
+                  </div>
+
+                  <div *ngIf="profileOnSaveSuccess">
+                    <div class="alert alert-success">
+                      {{ profileOnSaveSuccess }}
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="fName">First Name:</label>
+                    <input type="text" id="fName" name="fName" class="form-control" formControlName="firstName" required>
+
+                    <!--Validation Errors-->
+                    <div class="alert alert-danger mt-2" *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched)">
+                      <div *ngIf="profileForm.controls['firstName'].hasError('required')">
+                        First name is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="lName">Last Name:</label>
+                    <input type="text" id="lName" name="lName" class="form-control" required formControlName="lastName">
+
+                    <!--Validation Errors-->
+                    <div class="alert alert-danger mt-2" *ngIf="profileForm.controls['lastName'].invalid && (profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched)">
+                      <div *ngIf="profileForm.controls['lastName'].hasError('required')">
+                        Last name is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <input type="submit" id="submit" [disabled]="!profileForm.valid" value="Save Changes" class="btn btn-lg bg-dark text-white mx-auto d-block w-100">
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text primary mr-2">settings</i>System Settings</h6>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Language</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              English
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Role</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ role }}
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
