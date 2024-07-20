@@ -7,7 +7,7 @@ import { AdminModule } from './admin/admin.module';
  */
 
 // imports statements
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';

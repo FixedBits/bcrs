@@ -1,0 +1,14 @@
+
+h2{
+  text-align: center;
+}
+
+.chart-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+#myPieChart {
+font-size: 40px;
+}

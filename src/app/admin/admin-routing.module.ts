@@ -2,6 +2,7 @@
  * DeVonte' Ellis
  * 7-5-24
  * Admin Routing Module
+ * Updated by: Victor Soto
  */
 
 // import statements
@@ -15,6 +16,7 @@ import { CreateEmployeesComponent } from "../admin/create-employees/create-emplo
 import { DeleteEmployeesComponent } from "../admin/delete-employees/delete-employees.component";
 import { EditEmployeesComponent } from "../admin/edit-employees/edit-employees.component";
 import { ViewEmployeesComponent } from "../admin/view-employees/view-employees.component";
+import { PieGraphComponent } from "../admin/pie-graph/pie-graph.component"; // Importing the pie-graph component
 
 // defining main routes for the admin component
 const routes: Routes = [
@@ -41,6 +43,11 @@ const routes: Routes = [
         path: 'view-employees',
         component: ViewEmployeesComponent,
         title: 'BCRS View Employee'
+      },
+      {
+        path: 'pie-graph',
+  component: PieGraphComponent,
+    title: 'BCRS Pie Graph'
       }
     ],
     canActivate: [roleGuard]

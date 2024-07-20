@@ -21,8 +21,6 @@ import { EmployeesService } from './employees.service';
 import { RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +30,7 @@ import { DirectoryComponent } from './directory/directory.component';
     NavComponent,
     FooterComponent,
     DirectoryComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -40,6 +39,7 @@ import { DirectoryComponent } from './directory/directory.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
