@@ -5,7 +5,7 @@
  Description: The nav component for BCRS-->
 
 
- <nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,8 +13,8 @@
     <div class="collapse navbar-collapse col-sm" id="navbarSupportedContent">
       <div class="logo">
         <a routerLink="/home">
-          <img  src="../../../assets/snek.jpg" alt="Logo"></a>
-          <h2>Bob's Computer Repair Shop</h2>
+          <img src="../../../assets/snek.jpg" alt="Logo"></a>
+        <h2>Bob's Computer Repair Shop</h2>
       </div>
       <div class="container nav-half">
         <ul class="navbar me-auto mb-2 mb-lg-0 d-flex justify-content-end">
@@ -28,12 +28,12 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item nav-font" routerLink="/security/signin">Login/Register</a></li>
               <li><a class="dropdown-item nav-font" routerLink="/directory">Employee Directory</a></li>
-              <!--added profile page link-->
-              <li class="dropdown-item"><a class="drowpdown-item nav-font" routerLink="/profile" >Profile</a></li>
-
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <div class="hide" *ngIf="isSignedIn">
-                <li class="dropdown-item"><a class="dropdown-item" (click)="signout()">Signout</a></li>
+                <li><a class="dropdown-item" routerLink="/pie-graph">Pie Graph</a></li>
+                <li><a class="dropdown-item" (click)="signout()">Signout</a></li>
               </div>
             </ul>
           </li>

@@ -20,10 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { EmployeesService } from './employees.service';
 import { RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
-import { ServiceRepairComponent } from './service-repair/service-repair.component';
-import { InvoiceComponent } from './service-repair/invoice/invoice.component';
-
-
+import { PieGraphComponent } from './pie-graph/pie-graph.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +31,8 @@ import { InvoiceComponent } from './service-repair/invoice/invoice.component';
     NavComponent,
     FooterComponent,
     DirectoryComponent,
-    ServiceRepairComponent,
-    InvoiceComponent,
+    PieGraphComponent
+
   ],
   imports: [
     BrowserModule,
@@ -44,6 +41,7 @@ import { InvoiceComponent } from './service-repair/invoice/invoice.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

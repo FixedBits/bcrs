@@ -1,0 +1,14 @@
+
+h1{
+  text-align: center;
+    padding-top: 20px;
+    padding-bottom: 14px;
+
+}
+
+.chart-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}

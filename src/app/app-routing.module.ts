@@ -7,7 +7,7 @@ import { AdminModule } from './admin/admin.module';
  */
 
 // imports statements
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
@@ -21,9 +21,9 @@ import { roleGuard } from './guards/role.guard';
 
 // Importing the directory component
 import { DirectoryComponent } from './directory/directory.component';
-import { ServiceRepairComponent } from './service-repair/service-repair.component';
-import { InvoiceComponent } from './service-repair/invoice/invoice.component';
-import { MyProfileComponent } from './profile/profile.component';
+
+// Importing the Pie-Chart component
+import { PieGraphComponent } from './pie-graph/pie-graph.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -52,25 +52,15 @@ const routes: Routes = [
         title: 'BCRS: Faq'
       },
       {
-      path: 'directory',
-        component: DirectoryComponent
+        path: 'directory',
+        component: DirectoryComponent,
+        title: 'BCRS: Employee Directory'
       },
       {
-        path: 'service-repair',
-        component: ServiceRepairComponent,
-        title: 'Service Repair',
-      },
-      {
-        path: 'invoice',
-        component: InvoiceComponent,
-        title: 'Invoice'
-      },
-      {
-        path: 'profile',
-        component: MyProfileComponent,
-        title: 'BCRS: My Profile'
+        path: 'pie-graph',
+      component: PieGraphComponent,
+        title: 'BCRS: Pie Graph'
       }
-
     ],
   },
   {

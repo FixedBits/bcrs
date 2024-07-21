@@ -2,6 +2,7 @@
  * DeVonte' Ellis
  * 7-5-24
  * Admin Routing Module
+ * Updated by: Victor Soto
  */
 
 // import statements
@@ -41,7 +42,7 @@ const routes: Routes = [
         path: 'view-employees',
         component: ViewEmployeesComponent,
         title: 'BCRS View Employee'
-      }
+      },
     ],
     canActivate: [roleGuard]
   },
