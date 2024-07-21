@@ -65,11 +65,6 @@ const routes: Routes = [
         component: InvoiceComponent,
         title: 'Invoice'
       },
-      {
-        path: 'profile',
-        component: MyProfileComponent,
-        title: "BCRS: My Profile"
-      }
 
     ],
   },
