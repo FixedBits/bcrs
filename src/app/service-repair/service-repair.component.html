@@ -1,45 +1,52 @@
 <div>
-  <h1>Bob's Computer Repair Shop!</h1>
+
 
   <br />
 
   <form #orderForm="ngForm" (ngSubmit)="generateOrder(orderForm)">
-
+    <h1>Bob's Computer Repair Shop!</h1>
     <!--Input field for email-->
-    <div class="email">
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" class="form-control" [(ngModel)]="order.email" #email="ngModel" required>
-      <div *ngIf="email.errors?.['required']">Email is required.</div>
-      <div *ngIf="email.errors?.['email']">Invalid email format.</div>
-    </div>
+    <div class="top-container">
+      <h2>Create a Request</h2>
+      <div class="email">
+        <label for="email" class="email-title">Customer Email:</label>
+        <input type="text" placeholder="Email" id="email" name="email" class="form-control" [(ngModel)]="order.email" #email="ngModel" required>
+        <div class="required" *ngIf="email.errors?.['required']">*Required</div>
+        <div class="required" *ngIf="email.errors?.['email']">Invalid email format.</div>
+      </div>
+
+
 
     <!--First name input field-->
     <div class="firstName">
-      <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="order.firstName" #firstName="ngModel" required>
-      <div *ngIf="firstName.errors?.['required']">First Name is required.</div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="order.firstName" #firstName="ngModel" placeholder="First Name" required>
+      <div class="required" *ngIf="firstName.errors?.['required']">*Required</div>
     </div>
 
     <!-- Last name input field-->
     <div class="lastName">
-      <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="order.lastName" #lastName="ngModel" required>
-      <div *ngIf="lastName.errors?.['required']">Last Name is required.</div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="order.lastName" #lastName="ngModel" placeholder="Last Name" required>
+      <div class="required" *ngIf="lastName.errors?.['required']">*Required</div>
+    </div>
+    </div>
+    <div class="product-container">
+      <div class="products" *ngFor="let product of products">
+        <input type="checkbox" [value]="product.price" [(ngModel)]="product.checked" [name]="product.name"> {{ product.name }} - {{ product.price | currency:'USD' }}
+      </div>
     </div>
 
-    <div *ngFor="let product of products">
-      <input type="checkbox" [value]="product.price" [(ngModel)]="product.checked" [name]="product.name"> {{ product.name }} - {{ product.price | currency:'USD' }}
-    </div>
 
     <br />
 
-    <div>
+    <div class="parts-labor-container">
       <label for="parts-labor">Parts</label><br />
-      <input type="number" id="parts" name="parts" [(ngModel)]="order.parts"><br>
+      <input type="number" class="form-control" id="parts" name="parts" [(ngModel)]="order.parts"><br>
 
       <label for="parts-labor">Labor($50 an hour)</label><br />
-      <input type="number" id="labor" name="labor" [(ngModel)]="order.labor">
-    </div>
+      <input type="number" class="form-control" id="labor" name="labor" [(ngModel)]="order.labor">
+
 
     <br />
 
@@ -51,6 +58,6 @@
         </div>
       </button>
     </div>
-
+ </div>
   </form>
 </div>

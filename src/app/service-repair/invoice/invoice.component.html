@@ -2,6 +2,7 @@
     <h1>Invoice</h1>
     <h2 class="header">Order #{{ order.id }}</h2>
     <div class="order-date header">
+      <h5>Date</h5>
       {{ order.date | date}}
     </div>
 
@@ -23,8 +24,10 @@
     </div>
 
 
+    <hr>
 
     <div class="order-summary">
+      <h4>Order Summary</h4>
       <div *ngFor="let item of order.menuItems">
         <div>
           {{item.name}}
@@ -46,6 +49,7 @@
         </div>
       </div>
 
+      <hr>
       <div class="order-total">
         <h5>Order Total</h5>
         <div>

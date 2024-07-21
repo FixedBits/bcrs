@@ -1,0 +1,78 @@
+form {
+  width: 75%;
+  background-color: rgb(253, 243, 221);
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+#email {
+  width: 200px;
+}
+
+.top-container {
+  text-align: center;
+  background-color: #a3e4b1;
+  width: 50%;
+  margin: 50px auto;
+  border-radius: 30px;
+  padding: 40px;
+}
+
+#firstName {
+  width: 200px;
+}
+
+
+#lastName {
+  width: 200px;
+}
+
+
+.required {
+  color: red;
+  margin-left: 130px;
+}
+
+.product-container {
+  margin-top: 30px;
+}
+
+.products {
+  text-align: center;
+}
+
+input {
+  margin: 0 auto;
+}
+
+label {
+  margin-right: 100px;
+}
+
+.email-title {
+  margin-right: 80px;
+}
+
+.parts-labor-container {
+  width: 270px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+button {
+  margin-left: 40px;
+  background-color: rgb(110, 231, 185);
+  margin-bottom: 30px;
+}
+
+button:hover {
+  color: #000000;
+}
