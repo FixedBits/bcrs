@@ -16,7 +16,6 @@ import { CreateEmployeesComponent } from "../admin/create-employees/create-emplo
 import { DeleteEmployeesComponent } from "../admin/delete-employees/delete-employees.component";
 import { EditEmployeesComponent } from "../admin/edit-employees/edit-employees.component";
 import { ViewEmployeesComponent } from "../admin/view-employees/view-employees.component";
-import { PieGraphComponent } from "../admin/pie-graph/pie-graph.component"; // Importing the pie-graph component
 
 // defining main routes for the admin component
 const routes: Routes = [
@@ -44,11 +43,6 @@ const routes: Routes = [
         component: ViewEmployeesComponent,
         title: 'BCRS View Employee'
       },
-      {
-        path: 'pie-graph',
-  component: PieGraphComponent,
-    title: 'BCRS Pie Graph'
-      }
     ],
     canActivate: [roleGuard]
   },

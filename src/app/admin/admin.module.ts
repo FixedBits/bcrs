@@ -9,7 +9,6 @@ import { CreateEmployeesComponent } from "./create-employees/create-employees.co
 import { DeleteEmployeesComponent } from "./delete-employees/delete-employees.component";
 import { EditEmployeesComponent } from "./edit-employees/edit-employees.component";
 import { RouterModule } from "@angular/router";
-import { PieGraphComponent } from "./pie-graph/pie-graph.component";
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { PieGraphComponent } from "./pie-graph/pie-graph.component";
     ViewEmployeesComponent,
     CreateEmployeesComponent,
     DeleteEmployeesComponent,
-    EditEmployeesComponent,
-    PieGraphComponent
+    EditEmployeesComponent
   ],
   imports: [
     CommonModule,

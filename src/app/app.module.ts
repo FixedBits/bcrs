@@ -20,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { EmployeesService } from './employees.service';
 import { RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
+import { PieGraphComponent } from './pie-graph/pie-graph.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DirectoryComponent } from './directory/directory.component';
     NavComponent,
     FooterComponent,
     DirectoryComponent,
+    PieGraphComponent
 
   ],
   imports: [

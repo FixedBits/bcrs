@@ -27,14 +27,14 @@ export class PieGraphComponent implements OnInit {
       data: {
         labels: ['Password Reset', 'Spyware Removal', 'RAM Upgrade', 'Software Installation', 'PC Tune-up', 'Keyboard Cleaning', 'Disk Clean-up'], // Labels for the data
         datasets: [{
-          data: [3, 7, 5, 9, 4, 7, 15], // Data for the dataset
+          data: [6, 5, 2, 3, 2, 2, 2], // Data for the dataset
           backgroundColor: [
             '#ED0A3F',
             '#FF8833',
             '#5FA777',
             '#0066CC',
             '#6B3FA0',
-            '#AF593E', 
+            '#AF593E',
             '#6CDAE7'
           ],
           hoverBackgroundColor: [

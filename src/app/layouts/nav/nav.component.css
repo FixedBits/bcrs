@@ -3,26 +3,22 @@ nav {
   border-bottom: rgb(0, 0, 0) solid 2px;
 }
 
-
 .logo {
   width: 50%;
 }
 
 h2 {
   color: black;
-  font-family:  "Poppins";
+  font-family: "Poppins";
   font-size: 40px;
   font-weight: 300;
   margin-top: 15px;
 }
 
-
-
 li {
   list-style-type: none;
   display: inline-block;
   font-size: 30px;
-
 }
 
 li a {
@@ -48,11 +44,21 @@ img {
   width: 80px;
 }
 
-
 .nav-half {
   width: 50%;
 }
 
 .nav-font {
+  font-size: 200px;
+}
+
+.dropdown-item {
   font-size: 20px;
+  text-align: left;
+  padding: 0%;
+  margin: 8px;
+}
+
+.nav-link {
+  font-size: 28px;
 }
