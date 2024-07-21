@@ -40,29 +40,6 @@
         <div>
           <strong>Phone Number: </strong>
         </div>
-        <div>
-          <span *ngIf="!isEditing" class="user-field">{{
-            user.phoneNumber
-          }}</span>
-          <input
-            *ngIf="isEditing"
-            type="tel"
-            [(ngModel)]="user.phoneNumber"
-            class="user-field-input w-75"
-          />
-        </div>
-        <div>
-          <strong>Address: </strong>
-        </div>
-        <div>
-          <span *ngIf="!isEditing" class="user-field">{{ user.address }}</span>
-          <input
-            *ngIf="isEditing"
-            type="text"
-            [(ngModel)]="user.address"
-            class="user-field-input w-75"
-          />
-        </div>
         <br />
         <div class="text-center">
           <button
