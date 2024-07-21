@@ -1,0 +1,25 @@
+<div>
+  <div class="order-summary">
+    <div class="order-summary-header">
+      <div class="order-summary_header-title">
+        <h2>Invoice #{{_id }}</h2>
+        <div class="order-summary_header-date">{{ invoice.date | date}}</div>
+      </div>
+  </div>
+
+  <div class="order-summary_body">
+    <h4 class="order-summary_body-title">Selected Menu Items</h4>
+
+    <div class="order-summary_body-item" *ngFor="let item of order.menuItems">
+      <div class="order-summary_body-item-name">{{ item.name }}:</div>
+      <div class="order-summary_body-tax-value">{{ invoice.tax | invoice:'1.2-5'}}</div>
+    </div>
+
+    <div class="order-summary_total">
+      <p>
+        <span class="order-summary_total-label">Total</span>
+        <span class="order-summary-total-value">{{ invoice.orderTotal | currency}}</span>
+      </p>
+    </div>
+  </div>
+</div>

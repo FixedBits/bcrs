@@ -189,4 +189,39 @@ router.get('/:id/invoice', (req, res, next) => {
   }
 });
 
+
+/**
+ * DeVonte Ellis
+ * 7-19-24
+ * findPurchasesByService
+ *
+ */
+
+router.get('/purchases-graph', async (req, res) => {
+  try {
+    const aggregationPipeline = [
+      { $unwind: '$menuItems' },
+      { $group: {
+        //groups menuitems by their title
+        _id: '$menuItems.title',
+        count: { $sum: 1 }
+      }
+    },
+    //sorts menuitems in order
+    { $sort: {_id: 1 }}
+    ];
+
+    const result = await Invoice.aggregate(aggregationPipeline);
+
+    res.status(200).json({ data: result });
+
+  } catch (err) {
+    //logs errors
+    console.error('Error:', err);
+    //responds with error and status message
+    res.status(500).json( { error: err.message });
+  }
+});
+
+
 module.exports = router;

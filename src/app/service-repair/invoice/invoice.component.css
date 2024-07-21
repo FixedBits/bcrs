@@ -1,0 +1,16 @@
+.btn {
+  border-radius: 0 !important;
+  color:#18251e !important;
+  border-color: #18251e !important;
+}
+
+/* Override theme on hover */
+.btn:hover {
+  background-color: #18251e !important;
+  color: white !important;
+  border-color: #18251e !important;
+}
+
+.return {
+  color:#18251e !important;
+}

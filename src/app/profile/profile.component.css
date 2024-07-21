@@ -1,0 +1,72 @@
+#editButton {
+  background-color: #fef3cd!important;
+  border-color: #fef3cd !important;
+  color: black !important;
+}
+
+#editButton:hover {
+  background-color: #6e7e20 !important;
+  border-color: #6e7e20 !important;
+  color: black !important;
+}
+
+.user-field{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+input {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #fef3cd;
+  outline: none;
+  color: white;
+}
+
+/* Remove white background from input field when focused */
+input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+/* Change placeholder color due to dark background */
+input::placeholder {
+  color: white;
+}
+
+.message {
+  color: #fef3cd;
+}
+
+.profile-picture {
+  border-radius: 50%;
+max-height: 175px;
+}
+
+button {
+  background-color: #fef3cd !important;
+  border-color: #fef3cd !important;
+  color: black !important;
+}
+
+button:hover {
+  background-color: #fef3cd!important;
+  border-color: #fef3cd !important;
+  color: black !important;
+}
+
+#cancelButton {
+  background-color: #18251e !important;
+  border-color: #18251e !important;
+  color: black !important;
+}
+
+#cancelButton:hover {
+  background-color: #18251e !important;
+  border-color: #18251e !important;
+  color: black !important;
+}
