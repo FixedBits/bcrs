@@ -33,7 +33,10 @@
 
               <li><hr class="dropdown-divider"></li>
               <div class="hide" *ngIf="isSignedIn">
-                <li class="dropdown-item"><a class="dropdown-item" (click)="signout()">Signout</a></li>
+                <li class="dropdown-item">
+                  <a class="nav-font" routerLink="/service-repair">Service Repair</a>
+                </li>
+                <li class="dropdown-item"><a class="dropdown-item nav-font" (click)="signout()">Signout</a></li>
               </div>
             </ul>
           </li>

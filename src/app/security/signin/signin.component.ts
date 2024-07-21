@@ -78,7 +78,7 @@ export class SigninComponent {
         //gives user two session cookies to name and Id
         this.cookieService.set('session_user', JSON.stringify(this.sessionUser), 1); // sets the session_user cookie
 
-        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; //if there is no return url redirect the user to the homepage
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/service-repair'; //if there is no return url redirect the user to the homepage
         this.isLoading = false;
 
         this.router.navigate([returnUrl]);

@@ -1,16 +1,29 @@
+h1 {
+  font-size: 40px;
+  font-weight: 600;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+div {
+  padding: 5px;
+}
+
 .btn {
-  border-radius: 0 !important;
-  color:#18251e !important;
-  border-color: #18251e !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 0;
+  color:#18251e ;
+  border-color: #18251e;
 }
 
 /* Override theme on hover */
 .btn:hover {
-  background-color: #18251e !important;
-  color: white !important;
-  border-color: #18251e !important;
+  background-color: #18251e;
+  color: white;
+  border-color: #18251e;
 }
 
 .return {
-  color:#18251e !important;
+  color:#18251e;
 }

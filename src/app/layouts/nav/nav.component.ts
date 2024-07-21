@@ -32,6 +32,8 @@ export class NavComponent {
       this.sessionUser = JSON.parse(this.cookieService.get('session_user'))
       console.log('Session User:', this.sessionUser)
     }
+
+
   }
 
   signout() {
