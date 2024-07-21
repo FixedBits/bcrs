@@ -58,7 +58,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecification));
 app.use("/api/users", userRoutes); // Use the employee route
 app.use("/api/security", securityRouter); // Use security route
 app.use('/api/register', registrationRoute)
-app.use('/api/invoice', invoiceRouter)
+app.use('/api/invoices', invoiceRouter)
 
 app.use((req, res, next) => {
   console.log('Request received:', req.method, req.url, JSON.stringify(req.body, null, 2));

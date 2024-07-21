@@ -1,10 +1,28 @@
-  <div class="container">
-    <h2>Order #{{ order.id }}</h2>
-    <div class="order-date">
+  <div class="container" id="invoice">
+    <h1>Invoice</h1>
+    <h2 class="header">Order #{{ order.id }}</h2>
+    <div class="order-date header">
       {{ order.date | date}}
     </div>
 
-    <h3>Selected Menu Items</h3>
+    <!--the submitted email-->
+    <div>
+      <h5>Email</h5>
+      {{order.email}}
+    </div>
+
+    <!--firstName submitted by user-->
+    <div class="firstName">
+      <h5>First Name</h5>
+      {{order.firstName}}
+    </div>
+
+    <div class="lastName">
+      <h5>Last Name</h5>
+      {{order.lastName}}
+    </div>
+
+
 
     <div class="order-summary">
       <div *ngFor="let item of order.menuItems">
@@ -15,26 +33,26 @@
       </div>
 
       <div>
-        <h3>Parts</h3>
+        <h5>Parts</h5>
         <div>
           {{order.parts | currency}}
         </div>
       </div>
 
       <div>
-        <h3>Labor(in hours)</h3>
+        <h5>Labor(in hours)</h5>
         <div>
           {{ order.labor}}
         </div>
       </div>
 
       <div class="order-total">
-        <h3>Order Total</h3>
+        <h5>Order Total</h5>
         <div>
           {{order.orderTotal | currency}}
         </div>
       </div>
 
-      <a class="return" routerLink="/">Place new order</a>
+      <button (click)="printInvoice()" class="btn">Print</button>
     </div>
   </div>

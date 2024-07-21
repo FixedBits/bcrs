@@ -62,8 +62,9 @@ const routes: Routes = [
       {
         path: 'invoice',
         component: InvoiceComponent,
-        title: 'BCRS Invoice'
+        title: 'Invoice'
       }
+
     ],
   },
   {

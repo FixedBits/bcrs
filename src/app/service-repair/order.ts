@@ -3,6 +3,9 @@ import { Product } from "./product";
 export class Order {
   menuItems: Array<Product>; //menuItems array of Product import
   id: number; // for the orderId
+  email: string;
+  firstName: string;
+  lastName: string;
   date: string;
   parts: number;
   labor: number;
@@ -11,6 +14,9 @@ export class Order {
   constructor() {
     // initializing the variables and array
     this.menuItems = [];
+    this.email = '';
+    this.firstName = '';
+    this.lastName = '';
     this.labor = 0;
     this.parts = 0;
     this.orderTotal = 0;

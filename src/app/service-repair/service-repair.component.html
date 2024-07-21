@@ -3,29 +3,54 @@
 
   <br />
 
-  <form #orderForm="ngForm" (submit)="generateOrder(); orderForm.reset()">
-    <fieldset>
-      <legend>Breakfast Menu</legend>
+  <form #orderForm="ngForm" (ngSubmit)="generateOrder(orderForm)">
 
-      <div *ngFor="let product of products">
-        <input type="checkbox" value="{{ product.price }}" [(ngModel)]="product.checked" [name]="product.name"> {{ product.name }} - {{ product.price | currency:'USD' }}
-      </div>
+    <!--Input field for email-->
+    <div class="email">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" class="form-control" [(ngModel)]="order.email" #email="ngModel" required>
+      <div *ngIf="email.errors?.['required']">Email is required.</div>
+      <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+    </div>
 
-      <br />
+    <!--First name input field-->
+    <div class="firstName">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="order.firstName" #firstName="ngModel" required>
+      <div *ngIf="firstName.errors?.['required']">First Name is required.</div>
+    </div>
 
-      <div>
-        <label for="parts-labor">Parts</label><br />
-        <input type="text" id="parts" name="parts" [(ngModel)]="order.parts"><br>
+    <!-- Last name input field-->
+    <div class="lastName">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="order.lastName" #lastName="ngModel" required>
+      <div *ngIf="lastName.errors?.['required']">Last Name is required.</div>
+    </div>
 
-        <label for="parts-labor">Labor($50 an hour)</label><br />
-        <input type="text" id="labor" name="labor" [(ngModel)]="order.labor">
-      </div>
+    <div *ngFor="let product of products">
+      <input type="checkbox" [value]="product.price" [(ngModel)]="product.checked" [name]="product.name"> {{ product.name }} - {{ product.price | currency:'USD' }}
+    </div>
 
-      <br />
+    <br />
 
-      <div>
-        <input type="submit" value="Place Order">
-      </div>
-    </fieldset>
+    <div>
+      <label for="parts-labor">Parts</label><br />
+      <input type="number" id="parts" name="parts" [(ngModel)]="order.parts"><br>
+
+      <label for="parts-labor">Labor($50 an hour)</label><br />
+      <input type="number" id="labor" name="labor" [(ngModel)]="order.labor">
+    </div>
+
+    <br />
+
+    <div>
+      <button class="btn" type="submit" id="submit" value="Place Order">
+        <span *ngIf="!isLoading">Create Service Request</span>
+        <div *ngIf="isLoading">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+        </div>
+      </button>
+    </div>
+
   </form>
 </div>

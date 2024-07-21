@@ -1,56 +1,81 @@
-import { Component } from '@angular/core';
-import { Product} from './product';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Product } from './product';
 import { MenuService } from './menu.service';
 import { Order } from './order';
 import { Router } from '@angular/router';
-
+import { InvoiceService } from './invoice.service';
 
 @Component({
   selector: 'app-service-repair',
   templateUrl: './service-repair.component.html',
   styleUrls: ['./service-repair.component.css']
 })
-export class ServiceRepairComponent {
+export class ServiceRepairComponent implements OnInit {
 
+  products: Array<Product>;
+  order: Order;
+  errorMessage: string;
+  isLoading: boolean = false;
 
-  products: Array<Product>; // a variable that contains an array of products from product.ts imported above
-  order: Order // order object from order.ts imported above
+  constructor(
+    private menuService: MenuService,
+    private router: Router,
+    private invoiceService: InvoiceService
+  ) {
+    this.errorMessage = '';
+    this.products = this.menuService.getProducts();
+    this.order = new Order();
+  }
 
-  constructor(private menuService: MenuService, private router: Router){
+  ngOnInit(): void {
+    // Initialize form validation logic if needed
+  }
 
-    this.products = this.menuService.getProducts() // call getProducts function from menu.service.ts
-    this.order = new Order() // a new order object is created from order.ts
+  generateOrder(form: NgForm) {
+    if (form.valid) {
+      console.log('Form is valid');
+      console.log('Order:', this.order);
+      console.log('Products', this.products);
 
-    console.log('Product Listing: ', this.products); // log the products array to the console
+      for (let product of this.products) {
+        if (product.checked) {
+          this.order.menuItems.push(product);
+        }
+      }
 
-  } // constructor ends
+      console.log('Ordered Items:', this.order.menuItems);
+      console.log('Order Parts:', this.order.parts);
+      console.log('Order Labor', this.order.labor);
+      console.log('Order Total:', this.order.getOrderTotal());
 
-  // a function that generates a new order and logs it to the console
-  generateOrder() {
-    console.log('Order:', this.order); // log the order
-    console.log('Products', this.products) // add product to order
+      this.order.orderTotal = parseFloat(this.order.getOrderTotal());
 
-    // loop over the products array and add checked products to the order object
-  for (let product of this.products) {
-    // check if product is checked by the user
-    if(product.checked) {
-      this.order.menuItems.push(product) // add product to order
-    } //end of if statement
-  } // end of for loop
+      console.log('Order', this.order);
 
-  console.log('Ordered Items:', this.order.menuItems) // log ordered items to the console
-  console.log('Order Parts:', this.order.parts) // logs the parts
+      let invoiceData = this.order;
 
-  console.log('Order Labor', this.order.labor) // logs the labor
+      console.log('Contents of invoiceData:', invoiceData);
 
-  console.log('Order Total:', this.order.getOrderTotal()) // log the order total
+      this.isLoading = true;
 
-  this.order.orderTotal = parseFloat(this.order.getOrderTotal()) // set orderTotal to the order's total
-
-  console.log('Order', this.order) // log order to the console
-
-  // navigate to the invoice page
-  this.router.navigate(['./invoice'], { queryParams: { order: JSON.stringify(this.order)}}) // ensure router is imported from angular and not express
-
+      this.invoiceService.createInvoice(invoiceData).subscribe({
+        next: (res) => {
+          console.log('Invoice created successfully', res);
+          this.isLoading = false;
+          this.router.navigate(['./invoice'], {
+            queryParams: { id: this.order.id }
+          });
+          console.log('Logging this.order.id:', this.order.id);
+        },
+        error: (err) => {
+          this.errorMessage = err.error.message || 'Something went wrong';
+          this.isLoading = false;
+        }
+      });
+    } else {
+      console.log('Form is invalid');
+      this.errorMessage = 'Please fill in all required fields correctly.';
+    }
   }
 }
