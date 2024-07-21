@@ -23,6 +23,7 @@ import { roleGuard } from './guards/role.guard';
 import { DirectoryComponent } from './directory/directory.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { InvoiceComponent } from './service-repair/invoice/invoice.component';
+import { MyProfileComponent } from './profile/profile.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -63,6 +64,11 @@ const routes: Routes = [
         path: 'invoice',
         component: InvoiceComponent,
         title: 'Invoice'
+      },
+      {
+        path: 'profile',
+        component: MyProfileComponent,
+        title: "BCRS: My Profile"
       }
 
     ],
