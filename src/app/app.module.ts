@@ -21,6 +21,9 @@ import { EmployeesService } from './employees.service';
 import { RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
 import { PieGraphComponent } from './pie-graph/pie-graph.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceComponent } from './service-repair/invoice/invoice.component';
+import { MyProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { PieGraphComponent } from './pie-graph/pie-graph.component';
     NavComponent,
     FooterComponent,
     DirectoryComponent,
-    PieGraphComponent
+    PieGraphComponent,
+    ServiceRepairComponent,
+    InvoiceComponent,
+    MyProfileComponent
 
   ],
   imports: [

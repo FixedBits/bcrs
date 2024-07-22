@@ -24,6 +24,9 @@ import { DirectoryComponent } from './directory/directory.component';
 
 // Importing the Pie-Chart component
 import { PieGraphComponent } from './pie-graph/pie-graph.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceComponent } from './service-repair/invoice/invoice.component';
+import { MyProfileComponent } from './profile/profile.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -52,6 +55,16 @@ const routes: Routes = [
         title: 'BCRS: Faq'
       },
       {
+        path: 'service-repair',
+        component: ServiceRepairComponent,
+        title: 'BCRS: Service Repair Form'
+      },
+      {
+        path: 'invoice',
+        component: InvoiceComponent,
+        title: 'BCRS: Invoice'
+      },
+      {
         path: 'directory',
         component: DirectoryComponent,
         title: 'BCRS: Employee Directory'
@@ -60,6 +73,11 @@ const routes: Routes = [
         path: 'pie-graph',
       component: PieGraphComponent,
         title: 'BCRS: Pie Graph'
+      },
+      {
+        path: 'profile',
+        component: MyProfileComponent,
+        title: 'BCRS: My Profile'
       }
     ],
   },
