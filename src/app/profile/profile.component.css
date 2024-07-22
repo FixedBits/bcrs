@@ -1,7 +1,7 @@
 #editButton {
   background-color: #fef3cd!important;
   border-color: #fef3cd !important;
-  color: black !important;
+  color: #18251e !important;
 }
 
 #editButton:hover {
@@ -25,7 +25,6 @@ input {
   color: white;
 }
 
-/* Remove white background from input field when focused */
 input:focus {
   background-color: transparent !important;
   outline: none !important;
@@ -33,7 +32,6 @@ input:focus {
   color: white;
 }
 
-/* Change placeholder color due to dark background */
 input::placeholder {
   color: white;
 }

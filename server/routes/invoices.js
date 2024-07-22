@@ -197,31 +197,81 @@ router.get('/:id/invoice', (req, res, next) => {
  *
  */
 
-router.get('/purchases-graph', async (req, res) => {
-  try {
-    const aggregationPipeline = [
-      { $unwind: '$menuItems' },
-      { $group: {
-        //groups menuitems by their title
-        _id: '$menuItems.title',
-        count: { $sum: 1 }
-      }
+/**
+ * Visual Schema representation
+ *
+ * const menuItemsSchema = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: { type: 'string' },
+      price: { type: 'number' },
     },
-    //sorts menuitems in order
-    { $sort: {_id: 1 }}
-    ];
+    required: ['name', 'price'],
+  },
+};
+ *
+ *
+ */
 
-    const result = await Invoice.aggregate(aggregationPipeline);
+//--------------------------------------------------------
 
-    res.status(200).json({ data: result });
+//findPurchasesByService
+router.get('/purchases-graph', (req, res, next) => {
+  try{
+    //Access the database and find an aggregate of invoices based on title and price
+    mongo(async (db) => {
 
-  } catch (err) {
-    //logs errors
-    console.error('Error:', err);
-    //responds with error and status message
-    res.status(500).json( { error: err.message });
+      //Create a variable for the aggregate search parameters
+      const aggregate =
+        [
+          {
+            $unwind: "$menuItems",
+          },
+          {
+            $group: {
+              _id: {
+                'name': "$menuItems.name",
+                'price': "$menuItems.price",
+              },
+              count: {
+                $sum: 1,
+              },
+            },
+          },
+          {
+            $sort: {
+              "_id.name": 1,
+            },
+          },
+        ]
+
+      // Access the invoices collection
+      const invoices = await db.collection('invoices').aggregate(aggregate).toArray()
+
+      // If the invoices are not found send an error
+      if(!invoices){
+        const err = new Error("Unable to find invoices: bad request")
+        err.status = 400;
+        console.log("err", err)
+        next(err)
+        return;
+      }
+
+      //Send the search result as a response
+      res.status(200).json(invoices);
+    });
+  } catch {
+    //Output an error statement and pass the error to the error handler
+    console.error("Error " + err);
+    next(err);
   }
-});
+})
 
 
 module.exports = router;
+
+
+
+
