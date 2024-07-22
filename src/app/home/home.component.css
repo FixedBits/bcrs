@@ -27,7 +27,7 @@ img {
 }
 
 #bob {
-  width: 55%;
+  width: 400px;
   margin-bottom: 30px;
 }
 
@@ -68,6 +68,7 @@ button {
   margin-bottom: 50px;
   border-radius: 60px;
   background-color: #2dafa4;
+  font-family: "Angkor";
 }
 
 button:hover {
@@ -96,3 +97,4 @@ h3 {
   background-color: #d1f5e9;
   margin-top: 20px;
 }
+
