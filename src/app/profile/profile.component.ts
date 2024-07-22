@@ -14,11 +14,11 @@ export class MyProfileComponent implements OnInit {
   user: any;
   isEditing = false;
   originalUser: any;
-  message: string = ''; // Initialize the 'message' property
+  message: string = '';
 
   constructor(private UserService: UserService, private cookieService: CookieService) { }
 
-  // Get the user's information
+  // Get the users info
   ngOnInit() {
     const userId = this.cookieService.get('userId');
     this.UserService.getUser(userId).subscribe(user => {
@@ -27,23 +27,23 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
-  // Toggle the edit mode
+  //function to save user data
   toggleEdit() {
     if (this.isEditing) {
       this.saveProfile();
     } else {
-      this.originalUser = { ...this.user };  // save the current user data before entering edit mode
+      this.originalUser = { ...this.user };
     }
     this.isEditing = !this.isEditing;
   }
 
-  // Cancel the edit mode
+  //closes the edit mode
   cancelEdit() {
-    this.user = { ...this.originalUser };  // restore the original user data
+    this.user = { ...this.originalUser };
     this.isEditing = false;
   }
 
-  // Get the user's last logged in date
+
   getLastLoggedIn() {
     if (this.user && this.user.lastLoggedIn) {
       const date = new Date(this.user.lastLoggedIn);
@@ -60,23 +60,23 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
-  // Upload the user's profile picture
+
   onUploadButtonClicked() {
     if (this.selectedFile) {
       this.UserService.uploadProfilePicture(this.user._id, this.selectedFile).subscribe(response => {
         console.log(response);
-        // Update the user's profile picture and show a success message
+
         this.user.profilePicture = response.profilePicture;
         this.message = 'Profile picture uploaded successfully!';
       }, error => {
-        // Show an error message
+        // Shows an error message
         console.error(error);
         this.message = error.error.error;
       });
     }
   }
 
-  // Save the user's profile
+//saves the profile
   saveProfile() {
     this.UserService.updateUser(this.user._id, this.user).subscribe(() => {
       this.message = 'Profile saved';
