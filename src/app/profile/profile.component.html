@@ -2,9 +2,9 @@
   <div class="d-flex justify-content-center">
     <div class="card text-white bg-dark mb-3 w-50">
       <div *ngIf="user" class="p-3">
-        <h2 class="text-center gold">My Profile</h2>
-        <p class="text-center">Last Logged In: {{ getLastLoggedIn() }}</p>
-        <!-- Display the profile picture -->
+        <h2 class="text-center gold">BCRS Profiles</h2>
+        <p class="text-center">-Welcome to your profile page-</p>
+
         <div class="text-center">
         <img
           *ngIf="user.profilePicture"
@@ -12,7 +12,7 @@
           class="profile-picture"
         />
         </div>
-        <!-- Show the file input and upload button only in edit mode -->
+
         <div *ngIf="isEditing" class="text-center">
           <p>Update Profile Picture</p>
           <input type="file" accept="image/*" #fileInput (change)="onFileSelected($event)" />
