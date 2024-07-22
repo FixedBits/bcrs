@@ -2,69 +2,73 @@
     Date: 7/14/24
     Title: verify-security-questions.component.html-->
 
-<form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()">
-  <fieldset>
-    <h1>Please verify your security questions</h1>
 
-  <!-- Error message -->
-  <div *ngIf="errorMessage">
-    <div class="alert alert-danger">
-      {{errorMessage}}
+
+
+  <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()">
+    <fieldset>
+      <h1>Please verify your security questions</h1>
+
+    <!-- Error message -->
+    <div *ngIf="errorMessage">
+      <div class="alert alert-danger">
+        {{errorMessage}}
+      </div>
     </div>
-  </div>
 
-  <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-
-
-  <!--Beginning of security Question 1-->
-  <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{question1}}</label>
-  <input type="text" formControlName="answer1" class="form-control" placeholder="Please enter answer here">
-
-
-
-  <!--End of security Question 1-->
-
-  <!--Beginning of security question 2 -->
-  <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-
-  <label *ngIf="!isLoadingLabels" for="q2" class="form-label">{{question2}}</label>
-  <input type="text" formControlName="answer2" class="form-control" placeholder="Please enter answer here">
-
-  <!-- Validation Errors -->
-  <div class="alert alert-danger" *ngIf="sqForm.controls['answer2'].invalid && (sqForm.controls['answer1'].dirty || sqForm.controls['answer2'].touched)">
-    <div *ngIf="sqForm.controls['answer2'].hasError('required')">
-      Answer is required.
+    <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
+      <span class="visually-hidden">Loading...</span>
     </div>
-   </div>
+
+
+    <!--Beginning of security Question 1-->
+    <label *ngIf="!isLoadingLabels" for="q1" class="form-label">{{question1}}</label>
+    <input type="text" formControlName="answer1" class="form-control" placeholder="Please enter answer here">
 
 
 
-  <!--End of security Question 2-->
+    <!--End of security Question 1-->
 
-  <!--Beginning of security question-->
-  <label *ngIf="!isLoadingLabels" for="q3" class="form-label">{{question3}}</label>
-  <input type="text" formControlName="answer3" class="form-control" placeholder="Please enter answer here">
-
-  <!-- Validation Errors -->
-  <div class="alert alert-danger" *ngIf="sqForm.controls['answer3'].invalid && (sqForm.controls['answer3'].dirty || sqForm.controls['answer3'].touched)">
-    <div *ngIf="sqForm.controls['answer1'].hasError('required')">
-      Answer is required.
+    <!--Beginning of security question 2 -->
+    <div class="spinner-border" role="status" *ngIf="isLoadingLabels">
+      <span class="visually-hidden">Loading...</span>
     </div>
-   </div>
-  </fieldset>
+
+    <label *ngIf="!isLoadingLabels" for="q2" class="form-label">{{question2}}</label>
+    <input type="text" formControlName="answer2" class="form-control" placeholder="Please enter answer here">
+
+    <!-- Validation Errors -->
+    <div class="alert alert-danger" *ngIf="sqForm.controls['answer2'].invalid && (sqForm.controls['answer1'].dirty || sqForm.controls['answer2'].touched)">
+      <div *ngIf="sqForm.controls['answer2'].hasError('required')">
+        Answer is required.
+      </div>
+     </div>
 
 
 
-  <button type="submit" id="submit" [disabled]="!sqForm.valid">
-    <span *ngIf="!isLoadingLabels">Verify Security Questions</span>
+    <!--End of security Question 2-->
 
-    <div *ngIf="isLoadingSubmit">
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
-    </div>
-  </button>
-  </form>
+    <!--Beginning of security question-->
+    <label *ngIf="!isLoadingLabels" for="q3" class="form-label">{{question3}}</label>
+    <input type="text" formControlName="answer3" class="form-control" placeholder="Please enter answer here">
+
+    <!-- Validation Errors -->
+    <div class="alert alert-danger" *ngIf="sqForm.controls['answer3'].invalid && (sqForm.controls['answer3'].dirty || sqForm.controls['answer3'].touched)">
+      <div *ngIf="sqForm.controls['answer1'].hasError('required')">
+        Answer is required.
+      </div>
+     </div>
+    </fieldset>
+
+
+
+    <button type="submit" id="submit" [disabled]="!sqForm.valid">
+      <span *ngIf="!isLoadingLabels">Submit</span>
+
+      <div *ngIf="isLoadingSubmit">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+      </div>
+    </button>
+    </form>
+
 
