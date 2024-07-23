@@ -44,7 +44,7 @@ export class ResetPasswordComponent {
     this.SecurityService.changePassword(this.email, password).subscribe({
       next: (data) => {
         console.log(data)
-        this.router.navigate(['/security/sign-in']) //redirects to sign in page
+        this.router.navigate(['/security/signin']) //redirects to sign in page
       },
       error: (err) => {
         console.log(err)

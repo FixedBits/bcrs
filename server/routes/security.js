@@ -16,9 +16,9 @@ const bcrypt = require("bcryptjs"); // This imports the bcrypt.js library for pa
 const router = express.Router(); // This creates a new instance of the express.Router class
 const ajv = new Ajv(); // This creates a new instance of the Ajv class
 const saltRounds = 10; // This sets the number of salt rounds
-
-
-
+//const app = express()
+//const bodyParser = require('body-parser');
+//app.use(bodyParser.json());
 
 /**
  * Signin
@@ -307,7 +307,7 @@ router.post("/verify/users/:email/reset-password", (req, res, next) => {
 
       console.log("MongoDB update result", result); // This logs out the result to the console
 
-      res.status(200).send("Success! Password reset complete."); // This returns a 200 status code to the client
+      res.status(200).json({message:"Success! Password reset complete."}); // This returns a 200 status code to the client
     }, next);
   } catch (err) {
     console.log(`API Error: ${err.message}`); // This logs out the error to the console
