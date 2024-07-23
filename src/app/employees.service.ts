@@ -20,4 +20,11 @@ export class EmployeesService {  // Define service class
   getUsers(): Observable<any> {  // Method to get users
     return this.http.get('/api/users');  // HTTP GET request
   }
+
+  // An API call to delete a user
+  deleteUser(_id: string): Observable<any> {
+    return this.http.delete(`/api/users/${_id}`);
+  }
+
+
 }

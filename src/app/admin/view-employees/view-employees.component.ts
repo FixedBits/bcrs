@@ -14,7 +14,12 @@ interface Employee {
   lastName: string;
   address: string;
   email: string;
-  phoneNumber: string;}
+  phoneNumber: string;
+  _id: string;
+
+}
+
+
 
 @Component({
   selector: 'app-view-employees',
@@ -24,6 +29,7 @@ interface Employee {
 export class ViewEmployeesComponent implements OnInit {
   employees: Employee[] = []; // Initialize employees as an array of employees
 
+
   constructor(
     private employeesService: EmployeesService) { }  // Inject EmployeesService
 
@@ -32,7 +38,18 @@ export class ViewEmployeesComponent implements OnInit {
       this.employees = data;
     });
   }
-}
 
+   // A function to delete the user
+   deleteUser(_id: string) {
+    this.employeesService.deleteUser(_id).subscribe({
+      next: response => {
+        console.log('User deleted successfully.', response);
+      },
+      error: error => {
+        console.error('Error deleting user', error);
+      }
+    });
+  }
 
+  }
 
