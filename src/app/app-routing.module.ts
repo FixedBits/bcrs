@@ -1,4 +1,3 @@
-import { AdminModule } from './admin/admin.module';
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
@@ -12,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
+import { AdminModule } from './admin/admin.module';
 
 // Importing the not-found component
 import { NotFoundComponent } from './not-found/not-found.component';

@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d4dfcb;
+  padding-bottom: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 45px;
+  font-weight: 600;
+}
+
+tr {
+  margin-left: 41px;
+  margin-right: 41px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+th {
+  font-size: 28px;
+  /* Header Row font-size */
+}
+
+td {
+  font-size: 18px;
+}
+
+.btn {
+  font-size: 29px;
+  border: 3px solid #e8ffe2;
+  border-radius: 20px;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 4px 2px 5px #51554d;
+  transition: all 0.1s ease-in-out; /* pressing down effect */
+}
+
+.btn:hover {
+  transform: translateY(3px); /* moves the button down by 4px on hover */
+  box-shadow: 5px 2px 1px #d4dfcb; /* reduces the shadow size on hover */
+}
+
+.btn-div {
+  text-align: center;
+}
+
+.table-container {
+  width: 80%;
+  margin: 0 auto; /* This will center the table */
+  overflow: auto;
+  border: 10px solid #e8ffe2;
+  padding: 20px;
+  border-style: double;
+  margin-bottom: 20px;
+}
