@@ -22,13 +22,14 @@
 img {
   width: 70%;
   border-radius: 30px;
-  box-shadow: 14px 14px 7px #6d7575;
+  box-shadow: 3px 3px 7px #6d7575;
   margin: 15px;
 }
 
 #bob {
   width: 400px;
   margin-bottom: 30px;
+  box-shadow: 3px 3px 7px #6d7575;
 }
 
 .slogan {
@@ -69,6 +70,7 @@ button {
   border-radius: 60px;
   background-color: #2dafa4;
   font-family: "Angkor";
+  box-shadow: 3px 3px 3px #6d7575;
 }
 
 button:hover {
