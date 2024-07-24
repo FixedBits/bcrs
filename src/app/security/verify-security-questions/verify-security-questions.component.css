@@ -1,124 +1,97 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: rgb(134, 211, 185);
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: #fef3cd;
+}
 
-  img {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-  }
+h1 {
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 500;
+}
 
-  body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    gap: 30px;
-    background-color: rgb(134, 211, 185);
-  }
+.question-label {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
+.answer-input {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-  h1{
-    float: top;
-    justify-content: center;
-    font-size: 50px;
-    color: #18251e
-  }
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 30px;
+  background-color: #fef3cd;
+}
 
-  .form-control{
-    position: relative;
-    width: 500px;
-  }
-
-  .form-control input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    outline: none;
-    color: black;
-    font-size: 1em;
-  }
-
-  .form-control span {
-    position: absolute;
-    left: 0;
-    padding: 10px;
-    pointer-events: none;
-    font-size: 1em;
-    color: white;
-    text-transform: uppercase;
-    transition: 0.5s
-  }
-
-  .form-control input:valid ~ span,
-  .form-control input:focus ~ span {
-    color: #e0ff42;
-    transform: translateX(10px) translateY(-7px);
-    font-size: 0.65em;
-    padding: 0 10px;
-    background: #1d2b3a;
-    border-left: 1px solid #e0ff42;
-    border-right: 1px solid #e0ff42;
-    letter-spacing: 0.2em;
-  }
-
-  .form-control input:valid,
-  .form-control input:focus {
-    border: 1px solid rgba(255,255,255,0.25);
-  }
-
-
-
-  .form-select{
-    position: relative;
-    width: 500px;
-  }
-
-  .form-select input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    outline: none;
-    color: black;
-    font-size: 1em;
-  }
-
-  .form-select span {
-    position: absolute;
-    left: 0;
-    padding: 10px;
-    pointer-events: none;
-    font-size: 1em;
-    color: white;
-    text-transform: uppercase;
-    transition: 0.5s
-  }
-
-  .form-select input:valid ~ span,
-  .form-select input:focus ~ span {
-    color: #e0ff42;
-    transform: translateX(10px) translateY(-7px);
-    font-size: 0.65em;
-    padding: 0 10px;
-    background: #1d2b3a;
-    border-left: 1px solid #e0ff42;
-    border-right: 1px solid #e0ff42;
-    letter-spacing: 0.2em;
-  }
-
-  .form-select input:valid,
-  .form-select input:focus {
-    border: 1px solid rgba(255,255,255,0.25);
-  }
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #18251e;
+}
 
 button {
+  padding-top: 20px;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 0.25em;
+  border-radius: 25px;
+  background-color: #fef3cd;
+  font: #18251e;
+  font-size: 20px;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+  }
+
+fieldset {
+  margin: 2em 0;
+  padding: 1em 2em;
+  border: solid 1px #fef3cd;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+label {
+  display: block;
+  margin-top: 1em;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+input {
+  padding: 5em;
+  border: solid 1px #18251e;
+  background-color: white;
+  height: 15px;
+  max-height: 5%;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  align-items: center;
+}
+
+.return-home {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
   background-color: #18251e;
-  color: #fef3cd;
+  color:#fef3cd
 }
