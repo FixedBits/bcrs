@@ -560,7 +560,9 @@ router.delete('/:userId', async (req, res, next) => {
 
       // If user is already disabled will send a message
       if (user.isDisabled === true) {
-        res.send('User is disabled');
+
+        //Response MUST be JSON!!!!!
+        console.log('User is disabled');
         return; // Return to exit the function
       }
 
