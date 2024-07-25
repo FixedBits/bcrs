@@ -1,28 +1,15 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-center">
-    <div class="card text-white bg-dark mb-3 w-50">
+    <div class="container">
       <div *ngIf="user" class="p-3">
-        <h2 class="text-center gold">My Profile</h2>
-        <p class="text-center">Last Logged In: {{ getLastLoggedIn() }}</p>
-
+        <h2 class="text-center">My Profile</h2>
         <!-- Display the profile picture -->
         <div class="text-center">
-        <img
-          *ngIf="user.profilePicture"
-          [src]="user.profilePicture"
-          class="profile-picture"
-        />
-        </div>
-        
-        <!-- Show the file input and upload button only in edit mode -->
-        <div *ngIf="isEditing" class="text-center">
-          <p>Update Profile Picture</p>
-          <input type="file" accept="image/*" #fileInput (change)="onFileSelected($event)" />
-          <br>
-          <br>
-          <button (click)="onUploadButtonClicked()">Upload</button>
-        </div>
+          <img src="../../../assets/snek.jpg">
+          </div>
+        <p class="text-center">Pride, ambition, and cunning</p>
 
+        <!-- Show the file input and upload button only in edit mode -->
         <p>
           <strong>Name:</strong><br />
           {{ user.firstName }} {{ user.lastName }}
@@ -40,7 +27,10 @@
           {{ user.email }}
         </p>
         <div>
-          <strong>Phone Number: </strong>
+          <p>
+            <strong>Phone Number</strong>
+            {{ user.phoneNumber }}
+          </p>
         </div>
         <br />
         <div class="text-center">

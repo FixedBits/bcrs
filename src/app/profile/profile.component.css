@@ -1,13 +1,26 @@
+* {
+  background-color: #18251e;
+}
+
 #editButton {
-  background-color: #fef3cd!important;
-  border-color: #fef3cd !important;
-  color: #18251e !important;
+  background-color: #fef3cd;
+  border-color: #fef3cd;
+  color: #18251e;
+}
+
+.container {
+  background-color: #18251e;
+  width: 800px;
+}
+
+h2 {
+  color: #fef3cd
 }
 
 #editButton:hover {
-  background-color: #6e7e20 !important;
-  border-color: #6e7e20 !important;
-  color: black !important;
+  background-color: #e0ff42;
+  border-color: #e0ff42;
+  color: black;
 }
 
 .user-field{
@@ -26,9 +39,9 @@ input {
 }
 
 input:focus {
-  background-color: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
   color: white;
 }
 
@@ -46,25 +59,34 @@ max-height: 175px;
 }
 
 button {
-  background-color: #fef3cd !important;
-  border-color: #fef3cd !important;
-  color: black !important;
+  background-color: #fef3cd;
+  border-color: #fef3cd;
+  color: black ;
 }
 
 button:hover {
-  background-color: #fef3cd!important;
-  border-color: #fef3cd !important;
-  color: black !important;
+  background-color: #fef3cd;
+  border-color: #fef3cd;
+  color: black;
 }
 
 #cancelButton {
-  background-color: #18251e !important;
-  border-color: #18251e !important;
-  color: black !important;
+  background-color: #18251e;
+  border-color: #18251e;
+  color: black;
 }
 
 #cancelButton:hover {
-  background-color: #18251e !important;
-  border-color: #18251e !important;
-  color: black !important;
+  background-color: #18251e;
+  border-color: #18251e;
+  color: black ;
+}
+
+img {
+  height: 60px;
+  width: 60px;
+}
+
+p {
+  color: #fef3cd;
 }
