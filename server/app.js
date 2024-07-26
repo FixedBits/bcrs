@@ -29,8 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 
-// To find the port(render)
-app.listen(port)
 
 //Swagger variables
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -91,5 +89,8 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// To find the port(render)
+app.listen(port)
 
 module.exports = app; // export the Express application
