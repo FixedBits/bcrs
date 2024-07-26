@@ -10,6 +10,10 @@
     "render-deploy": "ng build --configuration=production"
 
   },
+  "engines": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.1.0",
