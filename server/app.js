@@ -29,6 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 
+// To find the port(render)
+app.listen(port)
 
 //Swagger variables
 const swaggerJsdoc = require("swagger-jsdoc");
