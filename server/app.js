@@ -23,9 +23,6 @@ const invoiceRouter = require('./routes/invoices')
 const app = express();
 
 
-// Express.js listening on port 3001
-const port = process.env.PORT || 3001;
-
 
 // Configure the app
 app.use(express.json());
@@ -33,10 +30,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
-app.set('port', process.env.PORT || 3001)
 
-// To find the port(render)
-app.listen(port)
 
 //Swagger variables
 const swaggerJsdoc = require("swagger-jsdoc");
