@@ -22,13 +22,21 @@ const invoiceRouter = require('./routes/invoices')
 // Create the Express app
 const app = express();
 
+
+// Express.js listening on port 3001
+const port = process.env.PORT || 3001;
+
+
 // Configure the app
 app.use(express.json());
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist/bcrs")));
 app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
+app.set('port', process.env.PORT || 3001)
 
+// To find the port(render)
+app.listen(port)
 
 //Swagger variables
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -83,16 +91,5 @@ app.use(function (err, req, res, next) {
     stack: req.app.get("env") === "development" ? err.stack : undefined,
   });
 });
-
-// Express.js listening on port 3001
-const port = process.env.PORT || 3001;
-
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-// To find the port(render)
-app.listen(port)
 
 module.exports = app; // export the Express application
